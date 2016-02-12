@@ -228,12 +228,28 @@ To better tackle AD, we need to be able to treat it earlier.
 - possibilites = *endless* (thousands of potential approaches)
 - What now...?
 
+## The Data
 
+The study consists of `r dim(BigY)[1]` individuals, composed of Healthy Controls (HC), MCI, and AD patients.
+
+```{r, echo=FALSE, warning=FALSE, fig.width = 5 , fig.height = 5, cache=TRUE}
+	table(BigY$Type)
+```
+
+------
+
+```{r, echo=FALSE, warning=FALSE, fig.width = 5 , fig.height = 5, cache=TRUE, warning=FALSE, message=FALSE}
+require(ggplot2, quietly=TRUE)
+g.hist.SURV<- ggplot(melt(BigY[,c(4:35,37)]), aes(value, group=variable)) 
+g.hist.SURV<- g.hist.SURV+ geom_histogram(position="dodge")+ xlab("SURV")+ ylab("Frequency")+ facet_wrap(~variable,ncol=5 )+theme_bw()
+g.hist.SURV<- g.hist.SURV+geom_vline(xintercept = 1.5, col=grey(.5), linetype='dotted')
+g.hist.SURV
+```
 
 
 --------------
 
-```{r, echo=FALSE, warning=FALSE,, fig.width = 4 , fig.height = 3}
+```{r, echo=FALSE, warning=FALSE, fig.width = 4 , fig.height = 3, cache=TRUE}
 require(ggplot2, quietly=TRUE)
 DensityPlot_HC(5)
 DensityPlot_HC(10)
@@ -244,7 +260,7 @@ DensityPlot_HC(29)
 
 -----------
 
-```{r, echo=FALSE, warning=FALSE,, fig.width = 4 , fig.height = 3}
+```{r, echo=FALSE, warning=FALSE,, fig.width = 4 , fig.height = 3,cache=TRUE}
 require(ggplot2, quietly=TRUE)
 
 DensityPlot_Both(5)

@@ -112,42 +112,43 @@ To better tackle AD, we need to be able to treat it earlier.
 - possibilites = *endless* (thousands of potential approaches)
 - What now...?
 
+## The Data
 
+The study consists of 507 individuals, composed of Healthy Controls (HC), MCI, and AD patients.
+
+
+```
+## 
+##  AD MCI  HC 
+## 103 114 290
+```
+
+------
+
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-4-1.png)
 
 
 --------------
 
-
-```
-## 
-## Attaching package: 'ggplot2'
-```
-
-```
-## The following object is masked _by_ '.GlobalEnv':
-## 
-##     .pt
-```
-
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-3-1.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-3-2.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-3-3.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-3-4.png)
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-5-1.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-5-2.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-5-3.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-5-4.png)
 
 -----------
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-4-1.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-4-2.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-4-3.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-4-4.png)
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-6-1.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-6-2.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-6-3.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-6-4.png)
 
 -----------
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-5-1.png)
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-7-1.png)
 
 
 -------
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-6-1.png)
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-8-1.png)
 
 -------------
 
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-7-1.png)
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-1.png)
 
 
 
