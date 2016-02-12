@@ -7,117 +7,6 @@ Dr Zoe van Havre
 
 
 
-```
-## 
-## Attaching package: 'gplots'
-```
-
-```
-## The following object is masked from 'package:stats':
-## 
-##     lowess
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```
-## -------------------------------------------------------------------------
-```
-
-```
-## You have loaded plyr after dplyr - this is likely to cause problems.
-## If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
-## library(plyr); library(dplyr)
-```
-
-```
-## -------------------------------------------------------------------------
-```
-
-```
-## 
-## Attaching package: 'plyr'
-```
-
-```
-## The following objects are masked from 'package:dplyr':
-## 
-##     arrange, count, desc, failwith, id, mutate, rename, summarise,
-##     summarize
-```
-
-```
-## 
-## Welcome to dendextend version 1.1.2
-## 
-## Type ?dendextend to access the overall documentation and
-## browseVignettes(package = 'dendextend') for the package vignette.
-## You can execute a demo of the package via: demo(dendextend)
-## 
-## More information is available on the dendextend project web-site:
-## https://github.com/talgalili/dendextend/
-## 
-## Contact: <tal.galili@gmail.com>
-## Suggestions and bug-reports can be submitted at: https://github.com/talgalili/dendextend/issues
-## 
-## 			To suppress the this message use:
-## 			suppressPackageStartupMessages(library(dendextend))
-```
-
-```
-## 
-## Attaching package: 'dendextend'
-```
-
-```
-## The following object is masked from 'package:dplyr':
-## 
-##     %>%
-```
-
-```
-## The following object is masked from 'package:stats':
-## 
-##     cutree
-```
-
-```
-## Loading required package: ggplot2
-```
-
-```
-## Loading required package: tidyr
-```
-
-```
-## 
-## Attaching package: 'tidyr'
-```
-
-```
-## The following object is masked from 'package:dendextend':
-## 
-##     %>%
-```
-
-```
-## Warning: replacing previous import by 'grid::unit' when loading 'sjPlot'
-```
 
 
 ## Who am I?
@@ -227,6 +116,18 @@ To better tackle AD, we need to be able to treat it earlier.
 
 
 --------------
+
+
+```
+## 
+## Attaching package: 'ggplot2'
+```
+
+```
+## The following object is masked _by_ '.GlobalEnv':
+## 
+##     .pt
+```
 
 ![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-3-1.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-3-2.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-3-3.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-3-4.png)
 

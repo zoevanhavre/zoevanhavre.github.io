@@ -7,7 +7,7 @@ output:
     incremental: yes
     keep_md: yes
     logo: Images/logo.png
-    transition: faster    
+    transition: faster
   beamer_presentation:
     incremental: yes
     slide_level: 2
@@ -26,25 +26,14 @@ require(knitr)
 opts_knit$set(message=FALSE)
 # Set opts_chunk
 opts_chunk$set(fig.width=7, fig.height=5, pointsize=8)
+load("~/Google Drive/Work/CSIRO_P1/WOMBAT Talk 2016/Results_All_ForPres.RDATA")
 ```
 
 
 
-```{r,echo=FALSE,cache=FALSE}
-library(RColorBrewer)
-library(gplots)
-library(reshape2)
-library(dplyr)  
-library(plyr)
-library(dendextend)
-require(ggplot2)
-
-require(tidyr)
-library(devtools)
-library(sjPlot)
-library(scales)
-load("~/Google Drive/Work/CSIRO_P1/WOMBAT Talk 2016/Results_All_ForPres.RDATA")
-library(ggplot2)
+```{r,echo=FALSE,cache=TRUE}
+require(ggplot2, quietly=TRUE)
+require(tidyr, quietly=TRUE)
 
 # function:
 DensityPlot_HC<-function(ME, BigY_HC_inFunk=BigY_HC, 
@@ -245,7 +234,7 @@ To better tackle AD, we need to be able to treat it earlier.
 --------------
 
 ```{r, echo=FALSE, warning=FALSE,, fig.width = 4 , fig.height = 3}
-
+require(ggplot2, quietly=TRUE)
 DensityPlot_HC(5)
 DensityPlot_HC(10)
 DensityPlot_HC(15)
@@ -256,6 +245,7 @@ DensityPlot_HC(29)
 -----------
 
 ```{r, echo=FALSE, warning=FALSE,, fig.width = 4 , fig.height = 3}
+require(ggplot2, quietly=TRUE)
 
 DensityPlot_Both(5)
 DensityPlot_Both(10)
@@ -267,6 +257,7 @@ DensityPlot_Both(29)
 -----------
 
 ```{r, echo=FALSE,warning=FALSE, fig.height = 6, fig.width = 8}
+require(tidyr, quietly=TRUE)
 heatmap.3(t(ForSIMI_num),col=c( "dodgerblue4", "cyan2"),hclust=hclustfunc, distfun=distfunc,   key=FALSE, margins = c(2,8),cexRow = .6,cexCol = 0.001, xlab="Patients (HC only)")
 
 ```
@@ -291,6 +282,7 @@ ggplot(df.new.t,aes(Region,Proportion))+geom_bar(aes(fill=Genotype),stat="identi
 
 
 ```{r, echo=FALSE,warning=FALSE}
+require(tidyr, quietly=TRUE)
 
 # memory status
 df.new<-aggregate(Austin~ Region+k_hilo, droplevels(top_demogs),function(x) prop.table(table(x)) )
