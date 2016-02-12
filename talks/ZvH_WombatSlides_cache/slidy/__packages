@@ -1,0 +1,13 @@
+base
+knitr
+RColorBrewer
+ggplot2
+gplots
+reshape2
+dplyr
+plyr
+dendextend
+tidyr
+devtools
+sjPlot
+scales
