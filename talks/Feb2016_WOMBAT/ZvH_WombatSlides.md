@@ -35,8 +35,13 @@ The most common question asked since I started to pursue Statistics has been
 
 
 
-## 1. Urgency?
+# 1. Urgency?
 
+
+
+----------------
+
+<iframe src="Images/hc_diff_means.png" style="height: 200px"></iframe>
 
 
 ## 2. Hope...
@@ -73,9 +78,9 @@ Amazing things happen when data analysis combines
 - disease development is very slow
 - no cognitive changes for $\geq$ 20 years
 - once changes evident, extensive physical damage
-    - Ameloyd $\beta$ deposits
+    - Amyloid $\beta$ deposits
     - Neuro tangles
-    - Attrophy
+    - Atrophy
 - Tests which assess physical change are $ $ $ and intrusive
 
 
@@ -85,7 +90,7 @@ To better tackle AD, we need to be able to treat it earlier.
 
 - we know little about how AD behaves in its early stage
 - could compare known cases to controls, 
-    - but this is not targetted to early detection
+    - does not target early stage of AD
 - **would like to identify individuals likely to be in early stage of AD**
  
 ## How? 
