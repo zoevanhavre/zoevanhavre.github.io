@@ -166,10 +166,14 @@ The most common question asked since I started to pursue Statistics has been
 
 ## Can we keep up?
 
-- The exponetial growth of computing has not slowed down.
+- The exponential growth of computing has not slowed down.
 - New types of data and new challenges require new approaches
-- 
-
+- in 10 years, expecting to see 1000 times growth
+ 
+------
+to do: DIAGRAM 1
+-------
+to do: DIAGRAM 2
 ----------------
 
 
@@ -184,20 +188,26 @@ The most common question asked since I started to pursue Statistics has been
 - We are standing on a methodological goldmine...
     - **the traditional way**: 
         - Develop methods based on large sample theory.  
-        - Adapt / make assumptions. to deploy on realistic sample sizes
-    - **the future?** 
-        - Rework common tools to be closer to underlying theory
-        - This usually means Bayesian, yes. Sorry. 
-        - Asymptotic theory $\rightarrow$ Methods $\rightarrow$ Big Data  $\rightarrow$ Theoretically Supported Results
+        - Adapt / make assumptions to deploy on realistic sample sizes
+    - **the future...?** 
+        - Rework common methods to be closer to underlying theory
+        - This might mean going Bayesian, yes. Sorry. 
+        
+<!--We don't need to rework the wheel, just take off the tread.-->
+<!--Asymptotic theory $\rightarrow$ Methods $\rightarrow$ Big Data  $\rightarrow$ Theoretically Supported Results-->
     
     
-## 3. Excitement!
+# Excitement!
 
-Amazing things happen when data analysis combines
+## Better tools make data analysis easier
+Amazing things happen when data analysis combines clear research questions,  appropriate data, and suitable, accessible tools.
 
-- clear research questions, 
-- suitable tools, and 
-- appropriate data
+- Accessibility: usability, and understanding what the tool does.  
+    - *A screwdriver doesn't come with an instruction manual.*
+- People can do more with less (ie. *bricks VS cement*)
+- Simple models are less likely to be wrongly used
+
+It doesnt have to be just "analysis", it can be exploration, discovery, and a little bit magical. 
 
 
 
@@ -217,7 +227,7 @@ During this time, AD causes irreversible damage to the brain:
 - neurofibrillary tangles, 
 - overall atrophy.
 
-To better researchand treat AD, we need to be able to treat it earlier.
+To better research and treat AD, we need to be able to treat it earlier.
 
 
 ## What you need to know
@@ -267,20 +277,14 @@ g.hist.SURV
 ## Overfitted mixture models
 We can model an unknown number of groups using **overfitted mixture models**, a Bayesian method found in the R package "Zmix".
 
-  - too many groups are included in the model,
-  - extra groups **empty out**
-  - data driven and fully parametric, 
-  - based on latest asymptotic findings 
+  - too many groups are included in a mixture model
+  - extra groups **empty out** 
+  - probability of number of occupied groups  
+  - data driven and fully parametric
   - Bayesian, but straightforward 
-  - Assume: Up to $K$ groups  are normally distributed with an unknown mean and variance. 
+  - Assumes only that up to $K$ groups are normally distributed with an unknown mean and variance. 
 
-## Algorithm
-- modelling requires no additional assumptions beyond defaults
-- extra covariates can be explored later 
-    - could also use mixtures of regressions too... 
-    - > assumptions and decisions to make later on
-
-## Code outline
+## How it's done
 
 Install the package
 ```{r, eval=FALSE}
@@ -288,7 +292,7 @@ install_github('zoevanhavre/Zmix') # Thank you Hadley!
 library(Zmix)
 ```
 
-Run the model with 5 groups
+Run the model with $K=5$ groups
 
 ```{r, eval=FALSE}
 Zmix.Y<-Zmix_univ_tempered(Y, iter=50000, k=5) 

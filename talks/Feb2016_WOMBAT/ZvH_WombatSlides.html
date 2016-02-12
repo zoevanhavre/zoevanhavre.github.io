@@ -152,12 +152,20 @@
 </article></slide><slide class=''><hgroup><h2>Can we keep up?</h2></hgroup><article  id="can-we-keep-up">
 
 <ul class = 'build'>
-<li>The exponetial growth of computing has not slowed down.</li>
+<li>The exponential growth of computing has not slowed down.</li>
 <li>New types of data and new challenges require new approaches</li>
-<li></li>
+<li>in 10 years, expecting to see 1000 times growth</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+<table class = 'rmdtable'>
+<col width="9%" />
+<tr class="header">
+<th align="left">to do: DIAGRAM 1</th>
+</tr>
+<tr class="odd">
+<td align="left">to do: DIAGRAM 2</td>
+</tr>
+</table>
 
 </article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Hope&#8230;</h2></hgroup><article  id="hope...">
 
@@ -173,27 +181,38 @@
 
 <ul class = 'build'>
 <li>Develop methods based on large sample theory.<br/></li>
-<li>Adapt / make assumptions. to deploy on realistic sample sizes</li>
+<li>Adapt / make assumptions to deploy on realistic sample sizes</li>
 </ul></li>
-<li><strong>the future?</strong>
+<li><strong>the future&#8230;?</strong>
 
 <ul class = 'build'>
-<li>Rework common tools to be closer to underlying theory</li>
-<li>This usually means Bayesian, yes. Sorry.</li>
-<li>Asymptotic theory \(\rightarrow\) Methods \(\rightarrow\) Big Data \(\rightarrow\) Theoretically Supported Results</li>
+<li>Rework common methods to be closer to underlying theory</li>
+<li>This might mean going Bayesian, yes. Sorry.</li>
 </ul></li>
 </ul></li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>3. Excitement!</h2></hgroup><article  id="excitement">
+<!--We don't need to rework the wheel, just take off the tread.-->
 
-<p>Amazing things happen when data analysis combines</p>
+<!--Asymptotic theory $\rightarrow$ Methods $\rightarrow$ Big Data  $\rightarrow$ Theoretically Supported Results-->
+
+</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Excitement!</h2></hgroup><article  id="excitement">
+
+</article></slide><slide class=''><hgroup><h2>Better tools make data analysis easier</h2></hgroup><article  id="better-tools-make-data-analysis-easier">
+
+<p>Amazing things happen when data analysis combines clear research questions, appropriate data, and suitable, accessible tools.</p>
 
 <ul class = 'build'>
-<li>clear research questions,</li>
-<li>suitable tools, and</li>
-<li>appropriate data</li>
+<li>Accessibility: usability, and understanding what the tool does.
+
+<ul class = 'build'>
+<li><em>A screwdriver doesn&#39;t come with an instruction manual.</em></li>
+</ul></li>
+<li>People can do more with less (ie. <em>bricks VS cement</em>)</li>
+<li>Simple models are less likely to be wrongly used</li>
 </ul>
+
+<p>It doesnt have to be just &quot;analysis&quot;, it can be exploration, discovery, and a little bit magical.</p>
 
 </article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>A short story about Alzheimer&#39;s Disease</h2><h3> featuring&#8230; overfitted mixture models!</h3></hgroup><article  id="a-short-story-about-alzheimers-disease-featuring...-overfitted-mixture-models">
 
@@ -211,7 +230,7 @@
 <li>overall atrophy.</li>
 </ul>
 
-<p>To better researchand treat AD, we need to be able to treat it earlier.</p>
+<p>To better research and treat AD, we need to be able to treat it earlier.</p>
 
 </article></slide><slide class=''><hgroup><h2>What you need to know</h2></hgroup><article  id="what-you-need-to-know">
 
@@ -264,36 +283,22 @@
 <p>We can model an unknown number of groups using <strong>overfitted mixture models</strong>, a Bayesian method found in the R package &quot;Zmix&quot;.</p>
 
 <ul class = 'build'>
-<li>too many groups are included in the model,</li>
+<li>too many groups are included in a mixture model</li>
 <li>extra groups <strong>empty out</strong></li>
-<li>data driven and fully parametric,</li>
-<li>based on latest asymptotic findings</li>
+<li>probability of number of occupied groups<br/></li>
+<li>data driven and fully parametric</li>
 <li>Bayesian, but straightforward</li>
-<li>Assume: Up to \(K\) groups are normally distributed with an unknown mean and variance.</li>
+<li>Assumes only that up to \(K\) groups are normally distributed with an unknown mean and variance.</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Algorithm</h2></hgroup><article  id="algorithm">
-
-<ul class = 'build'>
-<li>modelling requires no additional assumptions beyond defaults</li>
-<li>extra covariates can be explored later
-
-<ul class = 'build'>
-<li>could also use mixtures of regressions too&#8230;</li>
-<li><blockquote>
-<p>assumptions and decisions to make later on</p>
-</blockquote></li>
-</ul></li>
-</ul>
-
-</article></slide><slide class=''><hgroup><h2>Code outline</h2></hgroup><article  id="code-outline">
+</article></slide><slide class=''><hgroup><h2>How it&#39;s done</h2></hgroup><article  id="how-its-done">
 
 <p>Install the package</p>
 
 <pre class = 'prettyprint lang-r'>install_github(&#39;zoevanhavre/Zmix&#39;) # Thank you Hadley!
 library(Zmix)</pre>
 
-<p>Run the model with 5 groups</p>
+<p>Run the model with \(K=5\) groups</p>
 
 <pre class = 'prettyprint lang-r'>Zmix.Y&lt;-Zmix_univ_tempered(Y, iter=50000, k=5) </pre>
 
