@@ -23,7 +23,7 @@ fontsize: 10pt
 # OPTIONS
 library(knitr)
 # Set opts_knit
-opts_knit$set(root.dir = "/Users/van42c/Google Drive/Work/CSIRO_P1/WOMBAT Talk 2016")
+#opts_knit$set(root.dir = "/Users/van42c/Google Drive/Work/CSIRO_P1/WOMBAT Talk 2016")
 # Set opts_chunk
 opts_chunk$set(fig.width=7, fig.height=5,pointsize=8)
 
@@ -33,7 +33,6 @@ opts_chunk$set(fig.width=7, fig.height=5,pointsize=8)
 
 ```{r,echo=FALSE,cache=TRUE}
 library(RColorBrewer)
-library(ggplot2)
 library(gplots)
 library(reshape2)
 library(dplyr)  
@@ -44,22 +43,68 @@ library(devtools)
 library(sjPlot)
 library(scales)
 load("~/Google Drive/Work/CSIRO_P1/WOMBAT Talk 2016/Results_All_ForPres.RDATA")
+library(ggplot2)
+# function:
+DensityPlot_HC<-function(ME, BigY_HC_inFunk=BigY_HC, 
+                            .All.tp_inFunk=.All.tp){ 
+	  y.now=BigY_HC_inFunk[,ME]
+    region.now=names(BigY_HC_inFunk)[ME]
+    
+    # pars:
+    pars.now    <-aggregate( Estimate~ variable+k,
+      data=.All.tp_inFunk[ .All.tp_inFunk$Region %in% region.now,],
+      mean)
+
+    Mix.pars<-list(  "Mu" =c(pars.now[pars.now$variable%in%"Mu",3]),
+                     "Var"=c(pars.now[pars.now$variable%in%"Sig",3]),
+                     "P"  =c(pars.now[pars.now$variable%in%"P",3]))
+  	In <-list("Y"=y.now, "mu"=Mix.pars[[1]], "sigma"=Mix.pars[[2]], "lambda"=Mix.pars[[3]])
+    x     <- seq(0.5,4,len=1000)
+  	pars    <- data.frame(comp=paste("K",c(1:length(In$lambda)), sep="_"), In$mu, In$sig, In$lambda )
+  	em.df   <- data.frame(x=rep(x,each=nrow(pars)),pars)
+  	em.df$y <- with(em.df,In.lambda*dnorm(x,mean=In.mu,sd=sqrt(In.sig)))
+  	em.df$In.mu<-	factor(em.df$In.mu)
+  	
+    if(sum(pars.now$k==2)==3) {levels(em.df$In.mu)<-c("HC_k_1", "HC_k_2")
+    }else{  levels(em.df$In.mu)<-c("HC_k_1")}
+
+		#model found
+		md<-ggplot(data.frame(x=In$Y),aes(x,y=..density..)) + xlab("SUVR")+ylab("Density")+
+        geom_histogram(fill="deepskyblue4", alpha = 0.8, binwidth=diff(range(y.now))/50)+
+		    geom_polygon(data=em.df,aes(x,y,fill=comp),color="black", alpha=0.5, size=0.2)+
+		    scale_fill_manual("Cluster",labels=format(em.df$In.mu,digits=3), values=c( "dodgerblue4", "cyan2"))+ 
+		    theme_bw()+
+#		  geom_vline(data=pars, aes(xintercept=In.mu),color="black",linetype="dashed", size=0.3)+
+#		    theme(legend.position="none")+
+#		    annotate("text", x = pars$In.mu[1]-0.01, y =-0.25, label = round(pars$In.mu[1], 2), angle=90, size=2)+ 
+		ggtitle(bquote(atop(.(region.now), atop(italic("HC (Blue)")))))+
+			 coord_cartesian(ylim= c(-0.5,  max(em.df$y)+0.5))
+		
+	 return(md)}
+
 
 
 # function:
-DensityPLotCooler<-function(ME, BigY_HC_inFunk=BigY_HC, BigY_AD_inFunk=BigY_AD, .All.tp_inFunk=.All.tp ,.All_AD_inFunk=.All_AD){ 
+DensityPlot_Both<-function(ME, BigY_HC_inFunk=BigY_HC, 
+                            BigY_AD_inFunk=BigY_AD, 
+                            .All.tp_inFunk=.All.tp ,
+                            .All_AD_inFunk=.All_AD){ 
 	  y.now=BigY_HC_inFunk[,ME]
     region.now=names(BigY_HC_inFunk)[ME]
     y.ad.now=BigY_AD_inFunk[,ME]
     
     # pars:
-    pars.now<-aggregate ( Estimate~ variable+k,data=.All.tp_inFunk[ .All.tp_inFunk$Region %in% region.now,], mean)
-    .All_AD.tp<-.All_AD_inFunk[.All_AD_inFunk$TopModel %in% TRUE,]
-    pars.now.ad<-aggregate ( Estimate~ variable+k,data=.All_AD.tp[ .All_AD.tp$Region %in% region.now,], mean)
+    pars.now    <-aggregate( Estimate~ variable+k,
+      data=.All.tp_inFunk[ .All.tp_inFunk$Region %in% region.now,],
+      mean)
+    .All_AD.tp  <-.All_AD_inFunk[.All_AD_inFunk$TopModel %in% TRUE,]
+    pars.now.ad <-aggregate(Estimate~ variable+k,
+                           data=.All_AD.tp[ .All_AD.tp$Region %in% region.now,],
+                           mean)
 
     Mix.pars<-list(  "Mu" =c(pars.now.ad[2,3], pars.now[pars.now$variable%in%"Mu",3]),
                      "Var"=c(pars.now.ad[3,3], pars.now[pars.now$variable%in%"Sig",3]),
-                     "P"  =c( pars.now.ad[1,3], pars.now[pars.now$variable%in%"P",3]))
+                     "P"  =c(pars.now.ad[1,3], pars.now[pars.now$variable%in%"P",3]))
   	In <-list("Y"=y.now, "mu"=Mix.pars[[1]], "sigma"=Mix.pars[[2]], "lambda"=Mix.pars[[3]])
     x     <- seq(0.5,4,len=1000)
   	pars    <- data.frame(comp=paste("K",c(1:length(In$lambda)), sep="_"), In$mu, In$sig, In$lambda )
@@ -84,6 +129,8 @@ DensityPLotCooler<-function(ME, BigY_HC_inFunk=BigY_HC, BigY_AD_inFunk=BigY_AD, 
 			 coord_cartesian(ylim= c(-0.5,  max(em.df$y)+0.5))
 		
 	 return(md)}
+
+
 ```
 
 
@@ -190,18 +237,23 @@ To better tackle AD, we need to be able to treat it earlier.
 - possibilites = *endless* (thousands of potential approaches)
 - What now...?
 
-------------
+
+
+
+--------------
 
 ```{r, echo=FALSE}
-DensityPLotCooler(5)
-DensityPLotCooler(10)
+DensityPlot_HC(5)
+
 ```
 
------------------------
+-----------
 
 ```{r, echo=FALSE}
-plot(cars)
+DensityPlot_Both(5)
+
 ```
+
 
 
 ## Slide with image
