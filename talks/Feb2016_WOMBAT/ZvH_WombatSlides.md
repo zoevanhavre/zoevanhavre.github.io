@@ -127,28 +127,58 @@ The study consists of 507 individuals, composed of Healthy Controls (HC), MCI, a
 
 ![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-4-1.png)
 
+# Overfitting with Zmix
+
+## Algorithm
+- modelling requires no additional assumptions beyond defaults
+- extra covariates can be explored later 
+    - could also use mixtures of regressions too... 
+    - > assumptions and decisions to make later on
+
+- Link to github
+
+- sample code for 1 region
+
+-------
+
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-5-1.png)
+
 
 --------------
-
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-5-1.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-5-2.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-5-3.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-5-4.png)
-
------------
 
 ![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-6-1.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-6-2.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-6-3.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-6-4.png)
 
 -----------
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-7-1.png)
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-7-1.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-7-2.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-7-3.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-7-4.png)
 
+
+
+----------
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-8-1.png)
+
+-----------
+
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-1.png)
+
+
+
+## Results
+
+- Majority of regions result in two clusters, 
+- of similar prevalence in the HC samples, 
+- Same individuals were allocated to higher mean clusters
+- The HC clusters with larger means resemble the distribu=on of SUVR in AD, shiXed to a lower mean, as would be expected in early stages of the disease. 
+- They also follow similar paYerns to the AD values
 
 -------
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-8-1.png)
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-1.png)
 
 -------------
 
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-1.png)
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-1.png)
 
 
 

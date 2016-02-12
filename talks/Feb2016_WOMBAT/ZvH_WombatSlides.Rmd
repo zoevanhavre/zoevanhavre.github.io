@@ -232,18 +232,39 @@ To better tackle AD, we need to be able to treat it earlier.
 
 The study consists of `r dim(BigY)[1]` individuals, composed of Healthy Controls (HC), MCI, and AD patients.
 
-```{r, echo=FALSE, warning=FALSE, fig.width = 5 , fig.height = 5, cache=TRUE}
+```{r, echo=FALSE,warning=FALSE, fig.height = 6, fig.width = 8, message=FALSE}
 	table(BigY$Type)
 ```
 
 ------
 
-```{r, echo=FALSE, warning=FALSE, fig.width = 5 , fig.height = 5, cache=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=FALSE,warning=FALSE, fig.height = 6, fig.width = 8, message=FALSE}
 require(ggplot2, quietly=TRUE)
-g.hist.SURV<- ggplot(melt(BigY[,c(4:35,37)]), aes(value, group=variable)) 
-g.hist.SURV<- g.hist.SURV+ geom_histogram(position="dodge")+ xlab("SURV")+ ylab("Frequency")+ facet_wrap(~variable,ncol=5 )+theme_bw()
-g.hist.SURV<- g.hist.SURV+geom_vline(xintercept = 1.5, col=grey(.5), linetype='dotted')
+require(reshape2, quietly=TRUE)
+g.hist.SURV<- ggplot(melt(BigY[,c(4:28)]), aes(value, group=variable)) 
+g.hist.SURV<- g.hist.SURV+ geom_histogram(position="dodge")+ xlab("SURV")+ ylab("Frequency")+ facet_wrap(~variable,ncol=5)+theme_bw()
 g.hist.SURV
+```
+
+# Overfitting with Zmix
+
+## Algorithm
+- modelling requires no additional assumptions beyond defaults
+- extra covariates can be explored later 
+    - could also use mixtures of regressions too... 
+    - > assumptions and decisions to make later on
+
+- Link to github
+
+- sample code for 1 region
+
+-------
+
+```{r, echo=FALSE,warning=FALSE, fig.height = 6, fig.width = 8, message=FALSE}
+require(ggplot2, quietly=TRUE)
+	gp.PropHigh.1<-ggplot(SUVR_ProportionHigh.1, aes(x=Region, y=PropHigh))+ geom_bar(stat="identity", fill="cyan2") + ggtitle("Prevalence of second cluster")+ xlab("Regions")+theme_bw()+ylab("Proportion of (HC) Patients")+theme(axis.text.x = element_text(angle = 90, hjust = 1))
+	# PLOT!!!
+	gp.PropHigh.1
 ```
 
 
@@ -270,19 +291,43 @@ DensityPlot_Both(29)
 
 ```
 
+
+
+----------
+```{r, echo=FALSE, warning=FALSE,, fig.width = 4 , fig.height = 3,cache=TRUE}
+require(ggplot2, quietly=TRUE)
+
+	ggplot(cr.tm.K02, aes( Region , Mu))+
+		geom_boxplot(aes(col=factor(k)), outlier.size=0.1)+ggtitle("HC, ordered by lower means")+
+		theme(axis.text.x = element_text(angle = 90, hjust = 1))+geom_hline(yintercept=1.5 )
+
+
+
+```
+
 -----------
 
-```{r, echo=FALSE,warning=FALSE, fig.height = 6, fig.width = 8}
+```{r, echo=FALSE,warning=FALSE, fig.height = 6, fig.width = 8, message=FALSE}
 require(tidyr, quietly=TRUE)
 heatmap.3(t(ForSIMI_num),col=c( "dodgerblue4", "cyan2"),hclust=hclustfunc, distfun=distfunc,   key=FALSE, margins = c(2,8),cexRow = .6,cexCol = 0.001, xlab="Patients (HC only)")
 
 ```
 
 
+
+## Results
+
+- Majority of regions result in two clusters, 
+- of similar prevalence in the HC samples, 
+- Same individuals were allocated to higher mean clusters
+- The HC clusters with larger means resemble the distribu=on of SUVR in AD, shiXed to a lower mean, as would be expected in early stages of the disease. 
+- They also follow similar paYerns to the AD values
+
 -------
 
-```{r, echo=FALSE,warning=FALSE, fig.height = 6, fig.width = 8}
+```{r, echo=FALSE,warning=FALSE, fig.height = 6, fig.width = 8, message=FALSE}
 require(tidyr, quietly=TRUE)
+require(ggplot2, quietly=TRUE)
 
 df.new<-aggregate(ApoE~ Region+k_hilo, droplevels(top_demogs),function(x) prop.table(table(x)) )
 df.new<-as.data.frame(as.matrix(df.new))
@@ -297,7 +342,7 @@ ggplot(df.new.t,aes(Region,Proportion))+geom_bar(aes(fill=Genotype),stat="identi
 -------------
 
 
-```{r, echo=FALSE,warning=FALSE}
+```{r, echo=FALSE,warning=FALSE, fig.height = 6, fig.width = 8, message=FALSE}
 require(tidyr, quietly=TRUE)
 
 # memory status
