@@ -77,22 +77,30 @@ Amazing things happen when data analysis combines
 
 
 
-## A short story | overfitted mixtures and Alzheimer's Disease
+# A short story about Alzheimer's Disease| featuring... overfitted mixture models!
+
 
 
 ## Key background
 
+Alzheimer's Disease (AD) currently affects over 342,800 Australians, and this number is expected to rise to 900,000 by 2050.
+
+Cognitive changes indicated something is amiss, but these occur late in the disease ($\geq$ 20 years).
+
+During this time, AD causes irreversible damage to the brain:
+
+- accumulation of **amyloid $\beta$**,
+- neurofibrillary tangles, 
+- overall atrophy.
+
+To better researchand treat AD, we need to be able to treat it earlier.
 
 
-### What you need to know
+## What you need to know
 
 - Alzheimer's Disease (AD) is something we need to address
 - disease development is very slow
-- no cognitive changes for $\geq$ 20 years
-- once changes evident, extensive physical damage
-    - Amyloid $\beta$ deposits
-    - Neuro tangles
-    - Atrophy
+- cognitive changes indetectable for $\geq$ 20 years
 - Tests which assess physical change are $ $ $ and intrusive
 
 
@@ -129,56 +137,90 @@ The study consists of 507 individuals, composed of Healthy Controls (HC), MCI, a
 
 # Overfitting with Zmix
 
+## Overfitted mixture models
+We can model an unknown number of groups using **overfitted mixture models**, a Bayesian method found in the R package "Zmix".
+
+  - too many groups are included in the model,
+  - extra groups **empty out**
+  - data driven and fully parametric, 
+  - based on latest asymptotic findings 
+  - Bayesian, but straightforward 
+  - Assume: Up to $K$ groups  are normally distributed with an unknown mean and variance. 
+
 ## Algorithm
 - modelling requires no additional assumptions beyond defaults
 - extra covariates can be explored later 
     - could also use mixtures of regressions too... 
     - > assumptions and decisions to make later on
 
-- Link to github
+## Code outline
 
-- sample code for 1 region
+Install the package
 
--------
+```r
+install_github('zoevanhavre/Zmix') # Thank you Hadley!
+library(Zmix)
+```
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-5-1.png)
+Run the model with 5 groups
+
+
+```r
+Zmix.Y<-Zmix_univ_tempered(Y, iter=50000, k=5) 
+```
+
+Process the results
+
+```r
+Proc.Zmix.Y<-Process_Output_Zmix(Zmix.Y, Burn=25000)
+```
+
+
+[Check out the README for more examples](https://github.com/zoevanhavre/Zmix)
+
+
+# Results
 
 
 --------------
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-6-1.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-6-2.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-6-3.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-6-4.png)
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-8-1.png)
+
+
+--------------
+
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-1.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-2.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-3.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-4.png)
 
 -----------
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-7-1.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-7-2.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-7-3.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-7-4.png)
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-1.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-2.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-3.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-4.png)
 
 
 
 ----------
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-8-1.png)
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-1.png)
 
 -----------
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-1.png)
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-12-1.png)
 
+## Results overview
 
-
-## Results
-
+- Zmix found either **one** or **two** groups 
 - Majority of regions result in two clusters, 
-- of similar prevalence in the HC samples, 
-- Same individuals were allocated to higher mean clusters
-- The HC clusters with larger means resemble the distribu=on of SUVR in AD, shiXed to a lower mean, as would be expected in early stages of the disease. 
-- They also follow similar paYerns to the AD values
+- Prevalence of 2nd group similar across regions, 
+- Allocations to 2nd group highly correlated (across individuals)
+- The HC clusters with larger means resemble the distribution of SUVR in AD, shifted to a lower mean, (as would be expected in early stages of the disease).
+- They also follow a similar pattern across regions to AD 
 
 -------
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-1.png)
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-13-1.png)
 
 -------------
 
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-1.png)
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-14-1.png)
 
 
 
