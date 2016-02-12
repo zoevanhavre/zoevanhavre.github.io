@@ -1,12 +1,12 @@
 ---
-title: "Wombat - 2016 "
-author: Dr Zoe van Havre
+title: 'Wombat - 2016 '
+author: "Dr Zoe van Havre"
 date: "11 February 2016"
 output:
   ioslides_presentation:
     css: custom.css
     incremental: yes
-    keep_md: true
+    keep_md: yes
     logo: Images/logo.png
   beamer_presentation:
     incremental: yes
@@ -14,7 +14,7 @@ output:
     toc: yes
   slidy_presentation:
     incremental: yes
-subtitle: "Simple tools for complex problems: making molehills out of mountains"
+subtitle: 'Simple tools for complex problems: making molehills out of mountains'
 fontsize: 10pt
 ---
 
@@ -72,24 +72,33 @@ The most common question asked since I started to pursue Statistics has been
 
 
 
-# 1. Urgency?
+# Urgency?
 
+## Can we keep up?
 
+- The exponetial growth of computing has not slowed down.
+- New types of data and new challenges require new approaches
+- 
 
 ----------------
 
-<iframe src="Images/hc_diff_means.png" style="height: 200px"></iframe>
 
 
-## 2. Hope...
 
+# Hope...
+
+
+## Not all change is bad
 - Everyone is coming onboard! amazing advances
 - Data-science is a thing now
 - We are standing on a methodological goldmine...
-    - **the traditional way** 
-    - Asymptotic theory  $\rightarrow$ Methods $\rightarrow$ adapt for small sample sizes (i.e. make assumptions) $\rightarrow$ Data $\rightarrow$ Results...ish?
+    - **the traditional way**: 
+        - Develop methods based on large sample theory.  
+        - Adapt / make assumptions. to deploy on realistic sample sizes
     - **the future?** 
-    - Asymptotic theory $\rightarrow$ Methods $\rightarrow$ Big Data  $\rightarrow$ Theoretically Supported Results
+        - Rework common tools to be closer to underlying theory
+        - This usually means Bayesian, yes. Sorry. 
+        - Asymptotic theory $\rightarrow$ Methods $\rightarrow$ Big Data  $\rightarrow$ Theoretically Supported Results
     
     
 ## 3. Excitement!
