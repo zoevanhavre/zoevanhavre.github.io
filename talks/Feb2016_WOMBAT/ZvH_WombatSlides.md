@@ -6,6 +6,10 @@ Dr Zoe van Havre
 
 
 
+
+
+
+
 ## Who am I?
 
 - PhD in statistics, from QUT \& Paris-Dauphine
@@ -109,11 +113,13 @@ To better tackle AD, we need to be able to treat it earlier.
 - possibilites = *endless* (thousands of potential approaches)
 - What now...?
 
+------------
 
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-3-1.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-3-2.png)
 
 -----------------------
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-2-1.png)
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-4-1.png)
 
 
 ## Slide with image
