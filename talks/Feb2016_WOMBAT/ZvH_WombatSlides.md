@@ -118,11 +118,38 @@ To better tackle AD, we need to be able to treat it earlier.
 
 --------------
 
+
+```
+## 
+## Attaching package: 'ggplot2'
+```
+
+```
+## The following object is masked _by_ '.GlobalEnv':
+## 
+##     .pt
+```
+
 ![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-3-1.png)
 
 -----------
 
 ![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-4-1.png)
+
+-----------
+
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-5-1.png)
+
+
+-------
+
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-6-1.png)
+
+-------------
+
+
+![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-7-1.png)
+
 
 
 

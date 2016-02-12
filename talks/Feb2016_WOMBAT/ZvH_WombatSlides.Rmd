@@ -23,10 +23,9 @@ fontsize: 10pt
 # OPTIONS
 library(knitr)
 # Set opts_knit
-#opts_knit$set(root.dir = "/Users/van42c/Google Drive/Work/CSIRO_P1/WOMBAT Talk 2016")
+opts_knit$set(message=FALSE)
 # Set opts_chunk
-opts_chunk$set(fig.width=7, fig.height=5,pointsize=8)
-
+opts_chunk$set(fig.width=7, fig.height=5, pointsize=8)
 ```
 
 
@@ -38,12 +37,14 @@ library(reshape2)
 library(dplyr)  
 library(plyr)
 library(dendextend)
-library(tidyr)
+require(ggplot2)
+require(tidyr)
 library(devtools)
 library(sjPlot)
 library(scales)
 load("~/Google Drive/Work/CSIRO_P1/WOMBAT Talk 2016/Results_All_ForPres.RDATA")
 library(ggplot2)
+
 # function:
 DensityPlot_HC<-function(ME, BigY_HC_inFunk=BigY_HC, 
                             .All.tp_inFunk=.All.tp){ 
@@ -243,6 +244,7 @@ To better tackle AD, we need to be able to treat it earlier.
 --------------
 
 ```{r, echo=FALSE}
+library(ggplot2)
 DensityPlot_HC(5)
 
 ```
@@ -253,6 +255,46 @@ DensityPlot_HC(5)
 DensityPlot_Both(5)
 
 ```
+
+-----------
+
+```{r, echo=FALSE}
+heatmap.3(t(ForSIMI_num),col=c( "dodgerblue4", "cyan2"),hclust=hclustfunc, distfun=distfunc,   key=FALSE, margins = c(2,8),cexRow = .6,cexCol = 0.001, xlab="Patients (HC only)")
+
+```
+
+
+-------
+
+```{r, echo=FALSE,warning=FALSE}
+require(tidyr, quietly=TRUE)
+
+df.new<-aggregate(ApoE~ Region+k_hilo, droplevels(top_demogs),function(x) prop.table(table(x)) )
+df.new<-as.data.frame(as.matrix(df.new))
+df.new.t<-gather(df.new,key=Genotype, value=Proportion,ApoE.ApoE_Neg,  ApoE.ApoE_Pos  )
+df.new.t$Proportion<- factor2numeric( df.new.t$Proportion)
+levels(df.new.t$k_hilo)<-c("HC: high mean group","HC: low mean group")
+ggplot(df.new.t,aes(Region,Proportion))+geom_bar(aes(fill=Genotype),stat="identity",position='dodge')+facet_grid(~k_hilo)+theme_bw() +  theme(axis.text.x = element_text(angle = 90, hjust = 1), axis.text.y = element_text( hjust = 1))+ggtitle("Genotype by Zmix cluster")+ scale_fill_manual("Genotype",labels=c("ApoE- (good)", "ApoE+ (bad)"), values=c("red", "yellow"))  
+
+
+```
+
+-------------
+
+
+```{r, echo=FALSE,warning=FALSE}
+
+# memory status
+df.new<-aggregate(Austin~ Region+k_hilo, droplevels(top_demogs),function(x) prop.table(table(x)) )
+df.new<-as.data.frame(as.matrix(df.new))
+df.new.t<-gather(df.new,key=Diagnosis, value=Proportion,3,   4  )
+df.new.t$Proportion<- factor2numeric( df.new.t$Proportion)
+levels(df.new.t$Diagnosis)<-c("Memory Complainer (HC)"   ,  "Non-Memory Complainer (HC)")
+levels(df.new.t$k_hilo)<-c("HC: high mean group","HC: low mean group")
+ggplot(df.new.t,aes(Region,Proportion))+geom_bar(aes(fill=Diagnosis),stat="identity",position='dodge')+facet_grid(~k_hilo)+theme_bw() +  theme(axis.text.x = element_text(angle = 90, hjust = 1), axis.text.y = element_text( hjust = 1))+ggtitle("Memory Status by Zmix cluster")+ scale_fill_manual("Memory",labels=c("Complainer", "Non-Complainer"), values=c("orange", "green"))  
+  
+```
+
 
 
 
