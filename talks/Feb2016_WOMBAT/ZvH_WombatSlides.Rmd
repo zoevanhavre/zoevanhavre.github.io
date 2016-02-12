@@ -1,13 +1,13 @@
 ---
 title: 'Wombat - 2016 '
 author: "Dr Zoe van Havre"
-date: "11 February 2016"
 output:
   ioslides_presentation:
     css: custom.css
     incremental: yes
     keep_md: yes
     logo: Images/logo.png
+    transition: faster    
   beamer_presentation:
     incremental: yes
     slide_level: 2
@@ -21,7 +21,7 @@ fontsize: 10pt
 
 ```{r, echo=FALSE, include=FALSE, cache=TRUE}
 # OPTIONS
-library(knitr)
+require(knitr)
 # Set opts_knit
 opts_knit$set(message=FALSE)
 # Set opts_chunk
@@ -30,7 +30,7 @@ opts_chunk$set(fig.width=7, fig.height=5, pointsize=8)
 
 
 
-```{r,echo=FALSE,cache=TRUE}
+```{r,echo=FALSE,cache=FALSE}
 library(RColorBrewer)
 library(gplots)
 library(reshape2)
@@ -38,6 +38,7 @@ library(dplyr)
 library(plyr)
 library(dendextend)
 require(ggplot2)
+
 require(tidyr)
 library(devtools)
 library(sjPlot)
@@ -243,22 +244,29 @@ To better tackle AD, we need to be able to treat it earlier.
 
 --------------
 
-```{r, echo=FALSE}
-library(ggplot2)
+```{r, echo=FALSE, warning=FALSE,, fig.width = 4 , fig.height = 3}
+
 DensityPlot_HC(5)
+DensityPlot_HC(10)
+DensityPlot_HC(15)
+DensityPlot_HC(29)
 
 ```
 
 -----------
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE,, fig.width = 4 , fig.height = 3}
+
 DensityPlot_Both(5)
+DensityPlot_Both(10)
+DensityPlot_Both(15)
+DensityPlot_Both(29)
 
 ```
 
 -----------
 
-```{r, echo=FALSE}
+```{r, echo=FALSE,warning=FALSE, fig.height = 6, fig.width = 8}
 heatmap.3(t(ForSIMI_num),col=c( "dodgerblue4", "cyan2"),hclust=hclustfunc, distfun=distfunc,   key=FALSE, margins = c(2,8),cexRow = .6,cexCol = 0.001, xlab="Patients (HC only)")
 
 ```
@@ -266,7 +274,7 @@ heatmap.3(t(ForSIMI_num),col=c( "dodgerblue4", "cyan2"),hclust=hclustfunc, distf
 
 -------
 
-```{r, echo=FALSE,warning=FALSE}
+```{r, echo=FALSE,warning=FALSE, fig.height = 6, fig.width = 8}
 require(tidyr, quietly=TRUE)
 
 df.new<-aggregate(ApoE~ Region+k_hilo, droplevels(top_demogs),function(x) prop.table(table(x)) )
