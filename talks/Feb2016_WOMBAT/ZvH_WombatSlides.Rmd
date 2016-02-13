@@ -3,20 +3,23 @@ title: 'Wombat - 2016 '
 author: "Dr Zoe van Havre"
 output:
   ioslides_presentation:
-    css: custom.css
     incremental: yes
     keep_md: yes
     logo: Images/logo.png
     transition: faster
   beamer_presentation:
+    colortheme: dove
+    fonttheme: professionalfonts
+    highlight: haddock
     incremental: yes
     slide_level: 2
-    toc: yes
+    theme: Szeged
   slidy_presentation:
     incremental: yes
 subtitle: 'Simple tools for complex problems: making molehills out of mountains'
 fontsize: 10pt
 ---
+
 
 
 ```{r, echo=FALSE, include=FALSE, cache=TRUE}
@@ -202,12 +205,12 @@ to do: DIAGRAM 2
 ## Better tools make data analysis easier
 Amazing things happen when data analysis combines clear research questions,  appropriate data, and suitable, accessible tools.
 
-- Accessibility: usability, and understanding what the tool does.  
-    - *A screwdriver doesn't come with an instruction manual.*
-- People can do more with less (ie. *bricks VS cement*)
-- Simple models are less likely to be wrongly used
+* Accessibility: usability, and understanding what the tool does.  
+     _Hammers and nails do not come with instruction manuals._
+* People can sometimes do more with less.
+* Simple models are less likely to be wrongly used. 
 
-It doesnt have to be just "analysis", it can be exploration, discovery, and a little bit magical. 
+> It doesnt have to be just "analysis", it can be exploration, discovery, and a little bit magical. 
 
 
 
@@ -219,40 +222,41 @@ It doesnt have to be just "analysis", it can be exploration, discovery, and a li
 
 Alzheimer's Disease (AD) currently affects over 342,800 Australians, and this number is expected to rise to 900,000 by 2050.
 
-Cognitive changes indicated something is amiss, but these occur late in the disease ($\geq$ 20 years).
+Cognitive changes indicate something is amiss, but these occur late in the disease ($\geq$ 20 years).
 
 During this time, AD causes irreversible damage to the brain:
 
-- accumulation of **amyloid $\beta$**,
-- neurofibrillary tangles, 
-- overall atrophy.
+> - accumulation of **amyloid $\beta$**,
+> - neurofibrillary tangles, 
+> - overall atrophy.
 
 To better research and treat AD, we need to be able to treat it earlier.
-
-
-## What you need to know
-
-- Alzheimer's Disease (AD) is something we need to address
-- disease development is very slow
-- cognitive changes indetectable for $\geq$ 20 years
-- Tests which assess physical change are $ $ $ and intrusive
 
 
 ## How can we help improve early detection
 
 To better tackle AD, we need to be able to treat it earlier.
 
-- we know little about how AD behaves in its early stage
-- could compare known cases to controls, 
-    - does not target early stage of AD
-- **would like to identify individuals likely to be in early stage of AD**
- 
-## How? 
+__Goal: identify individuals likely to be in the early stage of AD.__
 
-- large repository of data exists thanks to AIBL study 
-- many data types, potential variables, time points, and sources
-- possibilites = *endless* (thousands of potential approaches)
-- What now...?
+* Large repository of data exists thanks to AIBL study  (REF)
+* SUVR available for 393 individuals, for a set of _brain regions_ (pre-processed)
+    * 290 HC, 103 AD 
+* Traditionally first thing to do is compare AD to HC, of course
+* But some of the clinically "Healthy" HC individuals these must be in _early stage AD_
+
+
+-----------
+
+* If heterogenous subgroups are present and not modelled, any conclusion drawn from comparing AD to HC may be skewed or entirely invalid. 
+* Our research problem is causing a problem...  
+* overfitted mixture models can be useful here
+* Lets assume we know little about how AD develops spatially and longitudinally
+    * model each region independentely
+* We want to know if there are subgroups in the HC irrespective of AD results
+    * model HC and AD seperately.
+* this leads to many, simple models.
+
 
 ## The Data
 
@@ -277,12 +281,12 @@ g.hist.SURV
 ## Overfitted mixture models
 We can model an unknown number of groups using **overfitted mixture models**, a Bayesian method found in the R package "Zmix".
 
-  - too many groups are included in a mixture model
-  - extra groups **empty out** 
-  - probability of number of occupied groups  
-  - data driven and fully parametric
-  - Bayesian, but straightforward 
-  - Assumes only that up to $K$ groups are normally distributed with an unknown mean and variance. 
+  * too many groups are included in a mixture model
+  * extra groups __empty out__
+  * probability of number of occupied groups  
+  * data driven and fully parametric
+  * Bayesian, but straightforward 
+  * Assumes only that up to $K$ groups are normally distributed with an unknown mean and variance. 
 
 ## How it's done
 
@@ -295,7 +299,9 @@ library(Zmix)
 Run the model with $K=5$ groups
 
 ```{r, eval=FALSE}
-Zmix.Y<-Zmix_univ_tempered(Y, iter=50000, k=5) 
+### <b> 
+Zmix.Y<-Zmix_univ_tempered (Y, iter=50000, k=5)  
+### </b>
 ```
 
 Process the results
@@ -367,12 +373,12 @@ heatmap.3(t(ForSIMI_num),col=c( "dodgerblue4", "cyan2"),hclust=hclustfunc, distf
 
 ## Results overview
 
-- Zmix found either **one** or **two** groups 
-- Majority of regions result in two clusters, 
-- Prevalence of 2nd group similar across regions, 
-- Allocations to 2nd group highly correlated (across individuals)
-- The HC clusters with larger means resemble the distribution of SUVR in AD, shifted to a lower mean, (as would be expected in early stages of the disease).
-- They also follow a similar pattern across regions to AD 
+* Zmix found either __one__ or __two__ groups 
+* Majority of regions result in two clusters, 
+* Prevalence of 2nd group similar across regions, 
+* Allocations to 2nd group highly correlated (across individuals)
+* The HC clusters with larger means resemble the distribution of SUVR in AD, shifted to a lower mean, (as would be expected in early stages of the disease).
+* They also follow a similar pattern across regions to AD 
 
 -------
 
@@ -409,8 +415,13 @@ ggplot(df.new.t,aes(Region,Proportion))+geom_bar(aes(fill=Diagnosis),stat="ident
 
 
 
+---  
+<img class="fill" src="Images/hc_diff_means.png" style="width: 800px"/>
 
-## Slide with image
-<img src="Images/hc_diff_means.png" style="width: 800px"/>
+<div class="notes">
+This is my *note*.
 
+- It can contain markdown
+- like this list
 
+</div>
