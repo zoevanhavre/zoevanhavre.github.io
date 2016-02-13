@@ -64,16 +64,23 @@ to do: DIAGRAM 2
 - Data-science is a thing now
 - We are standing on a methodological goldmine...
     - **the traditional way**: 
-        - Develop methods based on large sample theory.  
-        - Adapt / make assumptions to deploy on realistic sample sizes
+        - Adapt methods based on large sample theory for realistic sample sizes
     - **the future...?** 
         - Rework common methods to be closer to underlying theory
         - This might mean going Bayesian, yes. Sorry. 
-        
+
+-----
+
+</div>
+<div align="center">
+<img height="600" src="Images/Mammoth.png" frameborder="0" ></img>
+
+</div>
+            
 <!--We don't need to rework the wheel, just take off the tread.-->
 <!--Asymptotic theory $\rightarrow$ Methods $\rightarrow$ Big Data  $\rightarrow$ Theoretically Supported Results-->
     
-    
+
 # Excitement!
 
 ## Better tools make data analysis easier
@@ -125,7 +132,6 @@ __Goal: identify individuals likely to be in the early stage of AD.__
 <div align="center">
 <img height="600" src="Images/FarSidePenguin.jpg" frameborder="0" allowfullscreen></img>
 
-</div>
 
 -----------
 
