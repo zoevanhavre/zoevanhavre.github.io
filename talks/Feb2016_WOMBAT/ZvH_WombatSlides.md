@@ -119,18 +119,27 @@ __Goal: identify individuals likely to be in the early stage of AD.__
 * Traditionally first thing to do is compare AD to HC, of course
 * But some of the clinically "Healthy" HC individuals these must be in _early stage AD_
 
+-------
+
+
+<div align="center">
+<img height="600" src="Images/FarSidePenguin.jpg" frameborder="0" allowfullscreen></img>
+
+</div>
 
 -----------
 
-* If heterogenous subgroups are present and not modelled, any conclusion drawn from comparing AD to HC may be skewed or entirely invalid. 
+* If different types of individuals are present and not modelled, any conclusion drawn from comparing AD to HC may be skewed or entirely invalid. 
 * Our research problem is causing a problem...  
-* overfitted mixture models can be useful here
-* Lets assume we know little about how AD develops spatially and longitudinally
-    * model each region independentely
+* Assume distribution of SUVR in each region _may_ depend on unknown number of groups
+* Assume these are normally distributed
+* Assume nothing about how AD develops spatially and longitudinally
+    * Model each region separetely.
 * We want to know if there are subgroups in the HC irrespective of AD results
-    * model HC and AD seperately.
-* this leads to many, simple models.
-
+    * Model HC and AD seperately.
+* this leads to several, relatively simple models, but with a lot of unknowns
+    * number of groups, all group parameters
+* Overfitted mixture models can be useful here.
 
 ## The Data
 
@@ -231,7 +240,6 @@ Proc.Zmix.Y<-Process_Output_Zmix(Zmix.Y, Burn=25000)
 ![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-14-1.png)
 
 
-
 ---  
 <img class="fill" src="Images/hc_diff_means.png" style="width: 800px"/>
 
@@ -241,4 +249,12 @@ This is my *note*.
 - It can contain markdown
 - like this list
 
+</div>
+
+
+
+------
+<div align="center">
+<iframe width="560" height="315" src="http://www.youtube.com/embed/9bZkp7q19f0?rel=0" frameborder="0" allowfullscreen></iframe>
+   </iframe>
 </div>
