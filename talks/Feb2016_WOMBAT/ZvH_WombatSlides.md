@@ -16,14 +16,15 @@ Dr Zoe van Havre
 ## Who am I?
 
 - PhD in statistics, from QUT \& Paris-Dauphine
-- I live in Brisbane, by way of Canada, New Zealand, and various places in between.
+    - Honours in Bioinformatics, BSc Statitics
+- I now live in Brisbane, by way of Canada, Saipain, New Zealand, and various places in between. 
 - *Key areas*:
     - <img style="width: 18px; height: 18px; margin: 0; vertical-align: center;" src="http://i.stack.imgur.com/DSxUV.png" alt="" scale="0"> Bayesian statistics
     - Mixture and hidden Markov models, 
     - Bio-statistics/informatics/security,
 - *Research interests*
     - data driven, accessible, intuitive tools
-    - **making data analysis easier**
+    - **making data analysis easier...**
 
 
 ## What drives me?
@@ -37,8 +38,8 @@ The most common question asked since I started to pursue Statistics has been:
 I can share my three reasons!
 
 1. A sense of urgency,
-2. Tantalizing hope,
-3. Boundless excitement.
+2. tantalizing hope, and
+3. boundless excitement.
 
 
 
@@ -59,11 +60,15 @@ I can share my three reasons!
 * Opinions are changing fast, and everyone is coming onboard 
 * There are low hanging fruits to make better, easier tools.
     * __the traditional way__: adapt asymptotic theory to small sample sizes.
-    * __the future__: to take advantage of Big Data (i.e. closer to truth)
-    * <div align="center">
-    <img height="350" src="Images/Mammoth.png" frameborder="0" ></img>
-    </div>
-   
+    * __the future__: to take advantage of the _features_ of Big Data (i.e. closer to the underlying truth).
+
+## "Big" data
+<div align="center">
+<img height="500" src="Images/Mammoth.png" frameborder="0" ></img>
+</div>
+
+
+
 
 ## Excitement | Better tools make data analysis easier
 
@@ -71,15 +76,13 @@ I can share my three reasons!
       * __Accessibility__: easy to use and to understand what the tool does.
 * People can often do more with less. 
 * Simple models are less likely to be wrongly used. 
+* It doesnt have to be just "analysis"! It can be exploration, discovery, and more than a little exciting. 
 
 
-## Excitement | Better tools make data analysis easier!
-
- It doesnt have to be just "analysis"! It can be exploration, discovery, and more than a little exciting. 
-
-<div align="center">
-<img height="350" src="Images/good_hands.png" frameborder="0" ></img>
-</div>
+## Excitement
+* <div align="center">
+  <img height="500" src="Images/good_hands.png" frameborder="0" ></img>
+  </div>
 
 
 
@@ -89,55 +92,56 @@ I can share my three reasons!
 
 ## Key background
 
-Alzheimer's Disease (AD) currently affects over 342,800 Australians, and this number is expected to rise to 900,000 by 2050.
-
-Cognitive changes indicate something is amiss, but these occur late in the disease ($\geq$ 20 years).
-
-During this time, AD causes irreversible damage to the brain:
-
-> - accumulation of **amyloid $\beta$**,
-> - neurofibrillary tangles, 
-> - overall atrophy.
-
-To better research and treat AD, we need to be able to treat it earlier.
+* Alzheimer's Disease (AD) currently affects over 342,800 Australians, and this number is expected to rise to 900,000 by 2050.
+* Cognitive changes occur late in the disease ($\geq$ 20 years).
+* During this time, AD causes irreversible damage to the brain:
+ - accumulation of **amyloid $\beta$**,
+ - neurofibrillary tangles, 
+ - overall atrophy.
+* To better research and treat AD, we need to be able to treat it earlier.
 
 
-## How can we help improve early detection
+## How?
 
-To better tackle AD, we need to be able to treat it earlier.
+__Aim: identify individuals likely to be in the early stage of AD.__
 
-__Goal: identify individuals likely to be in the early stage of AD.__
+* Best detection tool we have:  imaging of __amyloid $\beta$__  
+* Data is procesed and aggregated for a set of regions (__"SUVR"__)
+  <div align="center">
+  <img height="200" src="Images/hc_brain_low.png" frameborder="0" ></img>
+  </div>
+* SUVR available for 393 individuals
+    * 290 HC, and 103 AD 
+    
+## How?
 
-* Large repository of data exists thanks to AIBL study  (REF)
-* SUVR available for 393 individuals, for a set of _brain regions_ (pre-processed)
-    * 290 HC, 103 AD 
-* Traditionally first thing to do is compare AD to HC, of course
-* But some of the clinically "Healthy" HC individuals these must be in _early stage AD_
+__Aim: identify individuals likely to be in the early stage of AD.__
+
+* Traditionally, we compared AD to HC, leading to a threshold score (1.5!) 
+* But we know we cannot diagnose early stage AD! 
+    - Some must be present in the controls
+* If different types of individuals are present and not modelled, any conclusion drawn from comparing AD to HC may be skewed or entirely invalid. 
+* Our research problem is causing a problem... 
 
 -------
-
-
+## Undetected subgroups can cause problems...
 <div align="center">
-<img height="600" src="Images/FarSidePenguin.jpg" frameborder="0" allowfullscreen></img>
+<img height="500" src="Images/FarSidePenguin.png" frameborder="0" allowfullscreen></img>
 
 
------------
+## Modelling hidden subgroups with mixtures
+ 
+ If the distribution of SUVR in each region depends on some unknown number of groups, we can use _overfitted mixture models_ with __Zmix__ to model these.
+ 
+* Assumes only that groups are normally distributed
+* We will fit univariate Normal mixture models
+    -assume nothing about how AD develops spatially or longitudinally
+* We will model HC and AD data separetely too
 
-* If different types of individuals are present and not modelled, any conclusion drawn from comparing AD to HC may be skewed or entirely invalid. 
-* Our research problem is causing a problem...  
-* Assume distribution of SUVR in each region _may_ depend on unknown number of groups
-* Assume these are normally distributed
-* Assume nothing about how AD develops spatially and longitudinally
-    * Model each region separetely.
-* We want to know if there are subgroups in the HC irrespective of AD results
-    * Model HC and AD seperately.
-* this leads to several, relatively simple models, but with a lot of unknowns
-    * number of groups, all group parameters
-* Overfitted mixture models can be useful here.
+* This leads to several, relatively simple models, with many unknowns
 
-## The Data
 
-The study consists of 507 individuals, composed of Healthy Controls (HC), MCI, and AD patients.
+## The Data| The study consists of 290 Healthy Controls (HC), and 103 AD patients.
 
 
 ```
@@ -192,40 +196,90 @@ Proc.Zmix.Y<-Process_Output_Zmix(Zmix.Y, Burn=25000)
 
 # Results
 
+## Initial results
 
---------------
+All regions were found to contain __one or two__ normally distributed groups.
 
+> * We chose to reduce results to the best model for each Region
+>     * (model averaging is an easy alternative)
+> * We named the groups by increasing mean
+
+------
+
+<slide class="segue dark background">
+<hgroup class="auto-fadein">
+<h2> What do these groups look like? </h2>
+</hgroup>
+<article id="sets-article-class" class="h1_class">
+</article>
+</slide>
+
+## Mixture models: HC data 
 <img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" style="display: block; margin: auto;" />
 
+## Mixture models: HC and AD data
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" style="display: block; margin: auto;" />
 
---------------
+-----
+<slide class="segue dark background">
+<hgroup class="auto-fadein">
+<h2> OK, let's zoom out </h2>
+</hgroup>
+<article id="sets-article-class" class="h1_class">
+</article>
+</slide>
 
-<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" style="display: block; margin: auto;" /><img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-2.png" title="" alt="" style="display: block; margin: auto;" /><img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-3.png" title="" alt="" style="display: block; margin: auto;" /><img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-4.png" title="" alt="" style="display: block; margin: auto;" />
 
------------
+## SUVR by group: HC
 
-<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" style="display: block; margin: auto;" /><img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-2.png" title="" alt="" style="display: block; margin: auto;" /><img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-3.png" title="" alt="" style="display: block; margin: auto;" /><img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-4.png" title="" alt="" style="display: block; margin: auto;" />
-
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 
-----------
+## SUVR by group: HC and AD
 <img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-12-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 
 
+## Weight of second cluster
 
-## Structure of results
 <img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-13-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 
+------
 
-### Genotype by Groups
+<slide class="segue dark background">
+<hgroup class="auto-fadein">
+<h2> Looking at individuals </h2>
+</hgroup>
+<article id="sets-article-class" class="h1_class">
+</article>
+</slide>
 
+
+## Structure of results
 <img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-14-1.png" title="" alt="" style="display: block; margin: auto;" />
 
-## Memory Status by Groups
+------------
+
+<slide class="segue dark background">
+<hgroup class="auto-fadein">
+<h2> What about other variables? </h2>
+</hgroup>
+</slide>
+
+
+HC: "Memory Complainers" by Group
+------------------------------
 
 <img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-15-1.png" title="" alt="" style="display: block; margin: auto;" />
+
+
+## Genotype by Group
+
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-16-1.png" title="" alt="" style="display: block; margin: auto;" />
+
+
+
 
 ## Summary
 
@@ -239,6 +293,18 @@ Proc.Zmix.Y<-Process_Output_Zmix(Zmix.Y, Burn=25000)
 
 
 
+## overview
+
+- data-driven subgroups show a group of individuals appear to be on track to AD
+- this can be corroborated with additional comparisons
+- could compute aggregate posterior probabilities across models
+    - i.e. cummulative probability of being allocated to a larger group for each individuals 
+- but locating second groups also allows us to proceed with more elaborate analyses
+- more importantly, it allows us to improve metrics which target the early stages of the diease 
+    - Can focus on prediction for putative __early AD__ group, etc
+    - _Easier_: metrics derived from __AD VS HC__ comparisons can be updated to use  __early AD__ instead of  AD
+    
+
 
 ------
 <div align="center">
@@ -250,9 +316,6 @@ Proc.Zmix.Y<-Process_Output_Zmix(Zmix.Y, Burn=25000)
 
 
 ------
-
-
-
 
 <slide class="segue dark background">
 <hgroup class="auto-fadein">

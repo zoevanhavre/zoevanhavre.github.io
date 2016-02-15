@@ -11,3 +11,11 @@ tidyr
 devtools
 sjPlot
 scales
+gridExtra
+mvtnorm
+coda
+MASS
+MCMCpack
+DIRECT
+gtools
+Zmix
