@@ -1,5 +1,8 @@
 # Wombat - 2016 
 Dr Zoe van Havre  
+`r Sys.Date()`  
+
+
 
 
 
@@ -25,17 +28,17 @@ Dr Zoe van Havre
 
 ## What drives me?
 
-The most common question asked since I started to pursue Statistics has been
+The most common question asked since I started to pursue Statistics has been:
 
-<div class="centered">
+<div class="centered" >
 **"Why...?"**
 </div>
 
-- I have three reasons:
+I can share my three reasons!
 
 1. A sense of urgency,
-2. tantalizing hope,
-3. boundless excitement.
+2. Tantalizing hope,
+3. Boundless excitement.
 
 
 
@@ -43,39 +46,34 @@ The most common question asked since I started to pursue Statistics has been
 
 ## Can we keep up?
 
-- The exponential growth of computing has not slowed down.
-- New types of data and new challenges require new approaches
-- in 10 years, expecting to see 1000 times growth
- 
-------
-to do: DIAGRAM 1
--------
-to do: DIAGRAM 2
-----------------
+The exponential growth of computing is not slowing down!
 
+* New types of data and new challenges require new approaches
+* This means that in 10 years, expect to see 1000-fold growth
 
+It is notoriously hard for us to understand what this means.
+
+* If we symbolise all of our computational advances by this dot $\rightarrow \cdot$
+
+    in 10 years:
+ * <img src="Images/1000-dots.png" width=900 alt="1000 dots">
+
+Are we ready
 
 
 # Hope...
 
 
-## Not all change is bad
-- Everyone is coming onboard! amazing advances
-- Data-science is a thing now
-- We are standing on a methodological goldmine...
-    - **the traditional way**: 
-        - Adapt methods based on large sample theory for realistic sample sizes
-    - **the future...?** 
-        - Rework common methods to be closer to underlying theory
-        - This might mean going Bayesian, yes. Sorry. 
+## Hope
 
------
-
-</div>
-<div align="center">
-<img height="600" src="Images/Mammoth.png" frameborder="0" ></img>
-
-</div>
+- Data-science is a thing now.
+- Opinions are changing, and everyone is coming onboard!
+- Many "low hanging fruits" if we want to make better, easier tools.
+    - __the traditional way__: adapt asymptotic theory to small sample sizes.
+    - __the future__: to take advantage of Big Data (i.e. closer to truth)
+    <div align="center">
+    <img height="350" src="Images/Mammoth.png" frameborder="0" ></img>
+    </div>
             
 <!--We don't need to rework the wheel, just take off the tread.-->
 <!--Asymptotic theory $\rightarrow$ Methods $\rightarrow$ Big Data  $\rightarrow$ Theoretically Supported Results-->
@@ -153,14 +151,14 @@ The study consists of 507 individuals, composed of Healthy Controls (HC), MCI, a
 
 
 ```
-## 
-##  AD MCI  HC 
-## 103 114 290
+#> 
+#>  AD MCI  HC 
+#> 103 114 290
 ```
 
 ------
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-4-1.png)
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 # Overfitting with Zmix
 
@@ -207,55 +205,48 @@ Proc.Zmix.Y<-Process_Output_Zmix(Zmix.Y, Burn=25000)
 
 --------------
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-8-1.png)
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 
 --------------
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-1.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-2.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-3.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-4.png)
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" style="display: block; margin: auto;" /><img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-2.png" title="" alt="" style="display: block; margin: auto;" /><img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-3.png" title="" alt="" style="display: block; margin: auto;" /><img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-4.png" title="" alt="" style="display: block; margin: auto;" />
 
 -----------
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-1.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-2.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-3.png)![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-4.png)
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" style="display: block; margin: auto;" /><img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-2.png" title="" alt="" style="display: block; margin: auto;" /><img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-3.png" title="" alt="" style="display: block; margin: auto;" /><img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-4.png" title="" alt="" style="display: block; margin: auto;" />
 
 
 
 ----------
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-1.png)
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-12-1.png" title="" alt="" style="display: block; margin: auto;" />
 
------------
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-12-1.png)
 
-## Results overview
 
-* Zmix found either __one__ or __two__ groups 
-* Majority of regions result in two clusters, 
+## Structure of results
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-13-1.png" title="" alt="" style="display: block; margin: auto;" />
+
+
+
+### Genotype by Groups
+
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-14-1.png" title="" alt="" style="display: block; margin: auto;" />
+
+## Memory Status by Groups
+
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-15-1.png" title="" alt="" style="display: block; margin: auto;" />
+
+## Summary
+
+* __one__ or __two__ Normal groups likely to be present. 
 * Prevalence of 2nd group similar across regions, 
-* Allocations to 2nd group highly correlated (across individuals)
-* The HC clusters with larger means resemble the distribution of SUVR in AD, shifted to a lower mean, (as would be expected in early stages of the disease).
-* They also follow a similar pattern across regions to AD 
-
--------
-
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-13-1.png)
-
--------------
+* Allocation to 2nd group highly correlated across individuals,
+* Distribution of HC clusters suggests
+    - SURV dist uniformly if you remove high mean group
+    - high mean groups closely resembles the distribution of SUVR in AD, but shifted to a lower mean
 
 
-![](ZvH_WombatSlides_files/figure-html/unnamed-chunk-14-1.png)
-
-
----  
-<img class="fill" src="Images/hc_diff_means.png" style="width: 800px"/>
-
-<div class="notes">
-This is my *note*.
-
-- It can contain markdown
-- like this list
-
-</div>
 
 
 
@@ -264,3 +255,19 @@ This is my *note*.
 <iframe width="560" height="315" src="http://www.youtube.com/embed/9bZkp7q19f0?rel=0" frameborder="0" allowfullscreen></iframe>
    </iframe>
 </div>
+
+
+
+
+------
+
+
+
+
+<slide class="segue dark background">
+<hgroup class="auto-fadein">
+<h2>Light Fade</h2>
+</hgroup>
+<article id="sets-article-class" class="h1_class">
+</article>
+</slide>

@@ -1,12 +1,15 @@
 ---
 title: 'Wombat - 2016 '
 author: "Dr Zoe van Havre"
+date: '`r Sys.Date()`'
 output:
   ioslides_presentation:
     incremental: yes
+    css: custom.css
     keep_md: yes
     logo: Images/logo.png
     transition: faster
+    widescreen: yes
   beamer_presentation:
     colortheme: dove
     fonttheme: professionalfonts
@@ -22,14 +25,22 @@ fontsize: 10pt
 
 
 
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  fig.align = "center",
+  cache = FALSE
+)
+```
+
 ```{r, echo=FALSE, include=FALSE, cache=TRUE}
 # OPTIONS
 require(knitr)
 # Set opts_knit
-opts_knit$set(echo=FALSE, 
-              warning=FALSE, 
-              message=FALSE,
-              cache = TRUE,
+opts_knit$set(cache = TRUE,
 	            error = TRUE,
               fig.height = 6, 
               fig.width = 8,
@@ -151,17 +162,17 @@ DensityPlot_Both<-function(ME, BigY_HC_inFunk=BigY_HC,
 
 ## What drives me?
 
-The most common question asked since I started to pursue Statistics has been
+The most common question asked since I started to pursue Statistics has been:
 
-<div class="centered">
+<div class="centered" >
 **"Why...?"**
 </div>
 
-- I have three reasons:
+I can share my three reasons!
 
 1. A sense of urgency,
-2. tantalizing hope,
-3. boundless excitement.
+2. Tantalizing hope,
+3. Boundless excitement.
 
 
 
@@ -169,39 +180,34 @@ The most common question asked since I started to pursue Statistics has been
 
 ## Can we keep up?
 
-- The exponential growth of computing has not slowed down.
-- New types of data and new challenges require new approaches
-- in 10 years, expecting to see 1000 times growth
- 
-------
-to do: DIAGRAM 1
--------
-to do: DIAGRAM 2
-----------------
+The exponential growth of computing is not slowing down!
 
+* New types of data and new challenges require new approaches
+* This means that in 10 years, expect to see 1000-fold growth
 
+It is notoriously hard for us to understand what this means.
+
+* If we symbolise all of our computational advances by this dot $\rightarrow \cdot$
+
+    in 10 years:
+ * <img src="Images/1000-dots.png" width=900 alt="1000 dots">
+
+Are we ready
 
 
 # Hope...
 
 
-## Not all change is bad
-- Everyone is coming onboard! amazing advances
-- Data-science is a thing now
-- We are standing on a methodological goldmine...
-    - **the traditional way**: 
-        - Adapt methods based on large sample theory for realistic sample sizes
-    - **the future...?** 
-        - Rework common methods to be closer to underlying theory
-        - This might mean going Bayesian, yes. Sorry. 
+## Hope
 
------
-
-</div>
-<div align="center">
-<img height="600" src="Images/Mammoth.png" frameborder="0" ></img>
-
-</div>
+- Data-science is a thing now.
+- Opinions are changing, and everyone is coming onboard!
+- Many "low hanging fruits" if we want to make better, easier tools.
+    - __the traditional way__: adapt asymptotic theory to small sample sizes.
+    - __the future__: to take advantage of Big Data (i.e. closer to truth)
+    <div align="center">
+    <img height="350" src="Images/Mammoth.png" frameborder="0" ></img>
+    </div>
             
 <!--We don't need to rework the wheel, just take off the tread.-->
 <!--Asymptotic theory $\rightarrow$ Methods $\rightarrow$ Big Data  $\rightarrow$ Theoretically Supported Results-->
@@ -345,7 +351,7 @@ require(ggplot2, quietly=TRUE)
 
 ```{r, echo=FALSE, warning=FALSE, fig.width = 4 , fig.height = 3, cache=TRUE}
 require(ggplot2, quietly=TRUE)
-DensityPlot_HC(5)
+DensityPlot_HC(5) 
 DensityPlot_HC(10)
 DensityPlot_HC(15)
 DensityPlot_HC(29)
@@ -354,7 +360,7 @@ DensityPlot_HC(29)
 
 -----------
 
-```{r, echo=FALSE, warning=FALSE,, fig.width = 4 , fig.height = 3,cache=TRUE}
+```{r, echo=FALSE, warning=FALSE,fig.width = 4 , fig.height = 3,cache=TRUE}
 require(ggplot2, quietly=TRUE)
 
 DensityPlot_Both(5)
@@ -367,7 +373,7 @@ DensityPlot_Both(29)
 
 
 ----------
-```{r, echo=FALSE, warning=FALSE,, fig.width = 4 , fig.height = 3,cache=TRUE}
+```{r, echo=FALSE, warning=FALSE, fig.width = 4 , fig.height = 3,cache=TRUE}
 require(ggplot2, quietly=TRUE)
 
 	ggplot(cr.tm.K02, aes( Region , Mu))+
@@ -378,24 +384,17 @@ require(ggplot2, quietly=TRUE)
 
 ```
 
------------
 
+
+
+## Structure of results
 ```{r, echo=FALSE,warning=FALSE, fig.height = 6, fig.width = 8, message=FALSE}
-require(tidyr, quietly=TRUE)
-heatmap.3(t(ForSIMI_num),col=c( "dodgerblue4", "cyan2"),hclust=hclustfunc, distfun=distfunc,   key=FALSE, margins = c(2,8),cexRow = .6,cexCol = 0.001, xlab="Patients (HC only)")
-
+heatmap.3(t(ForSIMI_num),col=c( "dodgerblue4", "cyan2"),Rowv = F, ColSideColors= column_annotation2, hclust=hclustfunc, distfun=distfunc,   key=FALSE, margins = c(3,10),cexRow = .6,cexCol = 0.001, xlab="Patients (HC only)")
 ```
 
-## Results overview
 
-* Zmix found either __one__ or __two__ groups 
-* Majority of regions result in two clusters, 
-* Prevalence of 2nd group similar across regions, 
-* Allocations to 2nd group highly correlated (across individuals)
-* The HC clusters with larger means resemble the distribution of SUVR in AD, shifted to a lower mean, (as would be expected in early stages of the disease).
-* They also follow a similar pattern across regions to AD 
 
--------
+### Genotype by Groups
 
 ```{r, echo=FALSE,warning=FALSE, fig.height = 6, fig.width = 8, message=FALSE}
 require(tidyr, quietly=TRUE)
@@ -411,8 +410,7 @@ ggplot(df.new.t,aes(Region,Proportion))+geom_bar(aes(fill=Genotype),stat="identi
 
 ```
 
--------------
-
+## Memory Status by Groups
 
 ```{r, echo=FALSE,warning=FALSE, fig.height = 6, fig.width = 8, message=FALSE}
 require(tidyr, quietly=TRUE)
@@ -425,20 +423,19 @@ df.new.t$Proportion<- factor2numeric( df.new.t$Proportion)
 levels(df.new.t$Diagnosis)<-c("Memory Complainer (HC)"   ,  "Non-Memory Complainer (HC)")
 levels(df.new.t$k_hilo)<-c("HC: high mean group","HC: low mean group")
 ggplot(df.new.t,aes(Region,Proportion))+geom_bar(aes(fill=Diagnosis),stat="identity",position='dodge')+facet_grid(~k_hilo)+theme_bw() +  theme(axis.text.x = element_text(angle = 90, hjust = 1), axis.text.y = element_text( hjust = 1))+ggtitle("Memory Status by Zmix cluster")+ scale_fill_manual("Memory",labels=c("Complainer", "Non-Complainer"), values=c("orange", "green"))  
-  
+
 ```
 
+## Summary
 
----  
-<img class="fill" src="Images/hc_diff_means.png" style="width: 800px"/>
+* __one__ or __two__ Normal groups likely to be present. 
+* Prevalence of 2nd group similar across regions, 
+* Allocation to 2nd group highly correlated across individuals,
+* Distribution of HC clusters suggests
+    - SURV dist uniformly if you remove high mean group
+    - high mean groups closely resembles the distribution of SUVR in AD, but shifted to a lower mean
 
-<div class="notes">
-This is my *note*.
 
-- It can contain markdown
-- like this list
-
-</div>
 
 
 
@@ -447,3 +444,19 @@ This is my *note*.
 <iframe width="560" height="315" src="http://www.youtube.com/embed/9bZkp7q19f0?rel=0" frameborder="0" allowfullscreen></iframe>
    </iframe>
 </div>
+
+
+
+
+------
+
+
+
+
+<slide class="segue dark background">
+<hgroup class="auto-fadein">
+<h2>Light Fade</h2>
+</hgroup>
+<article id="sets-article-class" class="h1_class">
+</article>
+</slide>
