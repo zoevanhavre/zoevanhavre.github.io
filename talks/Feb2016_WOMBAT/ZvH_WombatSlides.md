@@ -16,15 +16,25 @@ Dr Zoe van Havre
 ## Who am I?
 
 - PhD in statistics, from QUT \& Paris-Dauphine
-    - Honours in Bioinformatics, BSc Statitics
-- I now live in Brisbane, by way of Canada, Saipain, New Zealand, and various places in between. 
-- *Key areas*:
+    - Honours in Bioinformatics (Griffith), BSc in Statitics (Otago)
+- I now live in Brisbane, by way of a few places 
+  <div align="center">
+  <img height=300 style=" margin: 0; vertical-align: center;" src="Images/ZoesWorld.png"> 
+  </div>
+
+
+## Who am I?
+
+- *Key areas*
     - <img style="width: 18px; height: 18px; margin: 0; vertical-align: center;" src="http://i.stack.imgur.com/DSxUV.png" alt="" scale="0"> Bayesian statistics
     - Mixture and hidden Markov models, 
+      <div align="center">
+      <img height=100 style=" margin: 0; vertical-align: center;" src="Images/img2.png"> 
+      </div>
     - Bio-statistics/informatics/security,
 - *Research interests*
-    - data driven, accessible, intuitive tools
-    - **making data analysis easier...**
+    - Data driven, accessible, intuitive tools.
+    - **Making data analysis easier!**
 
 
 ## What drives me?
@@ -95,9 +105,9 @@ I can share my three reasons!
 * Alzheimer's Disease (AD) currently affects over 342,800 Australians, and this number is expected to rise to 900,000 by 2050.
 * Cognitive changes occur late in the disease ($\geq$ 20 years).
 * During this time, AD causes irreversible damage to the brain:
- - accumulation of **amyloid $\beta$**,
- - neurofibrillary tangles, 
- - overall atrophy.
+    - accumulation of **amyloid $\beta$**,
+    - neurofibrillary tangles, 
+    - overall atrophy.
 * To better research and treat AD, we need to be able to treat it earlier.
 
 
@@ -113,58 +123,53 @@ __Aim: identify individuals likely to be in the early stage of AD.__
 * SUVR available for 393 individuals
     * 290 HC, and 103 AD 
     
-## How?
+## Data overview |  Histograms of Healthy Controls (HC)
 
-__Aim: identify individuals likely to be in the early stage of AD.__
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-4-1.png" title="" alt="" style="display: block; margin: auto;" />
 
-* Traditionally, we compared AD to HC, leading to a threshold score (1.5!) 
-* But we know we cannot diagnose early stage AD! 
-    - Some must be present in the controls
-* If different types of individuals are present and not modelled, any conclusion drawn from comparing AD to HC may be skewed or entirely invalid. 
-* Our research problem is causing a problem... 
 
--------
-## Undetected subgroups can cause problems...
+## "Healthy" control...? 
+
+* Traditionally, we compared AD to HC, and so on...
+* If all HC are truly healthy, that's great, but some might have the disease.
+    - they did not look normally distributed!
+* If different types of individuals are present and not modelled specifically, any conclusion drawn from comparing AD to HC may be skewed or entirely invalid. 
+  - comparisons are blurred, inference limited
+* Our main research interest is causing a problem!
+
+
+
+## Undetected things can cause problems...
 <div align="center">
 <img height="500" src="Images/FarSidePenguin.png" frameborder="0" allowfullscreen></img>
 
 
 ## Modelling hidden subgroups with mixtures
  
- If the distribution of SUVR in each region depends on some unknown number of groups, we can use _overfitted mixture models_ with __Zmix__ to model these.
+ If the distribution of SUVR in each region depends on some unknown number of groups, we can use _overfitted mixture models_, with the package __Zmix__, to model these.
  
-* Assumes only that groups are normally distributed
-* We will fit univariate Normal mixture models
-    -assume nothing about how AD develops spatially or longitudinally
-* We will model HC and AD data separetely too
+* Assumes only that groups are normally distributed.
+* Want to explore use of many, simple models 
+    * Fit univariate, Normal mixture models with unknown means and variances
+    * Assumes nothing about how AD develops, spatially or longitudinally
+    * Run HC and AD data separetely too
 
-* This leads to several, relatively simple models, with many unknowns
+* This leads to several, relatively simple models, with results we can explore and potentially use for further analyses.
 
-
-## The Data| The study consists of 290 Healthy Controls (HC), and 103 AD patients.
-
-
-```
-#> 
-#>  AD MCI  HC 
-#> 103 114 290
-```
-
-------
-
-<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 # Overfitting with Zmix
 
 ## Overfitted mixture models
+
 We can model an unknown number of groups using **overfitted mixture models**, a Bayesian method found in the R package "Zmix".
 
-  * too many groups are included in a mixture model
-  * extra groups __empty out__
-  * probability of number of occupied groups  
-  * data driven and fully parametric
-  * Bayesian, but straightforward 
-  * Assumes only that up to $K$ groups are normally distributed with an unknown mean and variance. 
+* _Model Assumptions_: an unknown number of groups are normally distributed with an unknown mean and variance.   
+* _Prior_:  
+    * All conditionally conjugate, and $\approx$  non-informative. 
+    * __Prior weight of groups is $\approx$ zero.__
+    * i.e. If there is no data to support a group, it will be assigned a weight close to zero.
+* extra groups __empty out__ of observations, interpretation straightforward
+* Bayesian, but not hard, and quite robust.  
 
 ## How it's done
 
@@ -200,9 +205,9 @@ Proc.Zmix.Y<-Process_Output_Zmix(Zmix.Y, Burn=25000)
 
 All regions were found to contain __one or two__ normally distributed groups.
 
-> * We chose to reduce results to the best model for each Region
->     * (model averaging is an easy alternative)
-> * We named the groups by increasing mean
+ * We chose to reduce results to the best model for each Region
+      * (model averaging is an easy alternative)
+ * We also named the groups by increasing mean
 
 ------
 
@@ -215,10 +220,10 @@ All regions were found to contain __one or two__ normally distributed groups.
 </slide>
 
 ## Mixture models: HC data 
-<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ## Mixture models: HC and AD data
-<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 -----
 <slide class="segue dark background">
@@ -232,17 +237,17 @@ All regions were found to contain __one or two__ normally distributed groups.
 
 ## SUVR by group: HC
 
-<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 
 ## SUVR by group: HC and AD
-<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-12-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 
 
 ## Weight of second cluster
 
-<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-13-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-12-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 
 ------
@@ -257,7 +262,7 @@ All regions were found to contain __one or two__ normally distributed groups.
 
 
 ## Structure of results
-<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-14-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-13-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ------------
 
@@ -271,12 +276,12 @@ All regions were found to contain __one or two__ normally distributed groups.
 HC: "Memory Complainers" by Group
 ------------------------------
 
-<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-15-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-14-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 
 ## Genotype by Group
 
-<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-16-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-15-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 
 
