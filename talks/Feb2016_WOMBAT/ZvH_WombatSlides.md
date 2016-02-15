@@ -58,26 +58,20 @@ It is notoriously hard for us to understand what this means.
     in 10 years:
  * <img src="Images/1000-dots.png" width=900 alt="1000 dots">
 
-Are we ready
-
 
 # Hope...
 
-
 ## Hope
-
-- Data-science is a thing now.
-- Opinions are changing, and everyone is coming onboard!
-- Many "low hanging fruits" if we want to make better, easier tools.
+- Opinions are changing fast, and everyone is coming onboard!
+- There are low hanging fruits to make better, easier tools.
     - __the traditional way__: adapt asymptotic theory to small sample sizes.
     - __the future__: to take advantage of Big Data (i.e. closer to truth)
-    <div align="center">
+    - <div align="center">
     <img height="350" src="Images/Mammoth.png" frameborder="0" ></img>
     </div>
-            
-<!--We don't need to rework the wheel, just take off the tread.-->
-<!--Asymptotic theory $\rightarrow$ Methods $\rightarrow$ Big Data  $\rightarrow$ Theoretically Supported Results-->
-    
+   
+
+
 
 # Excitement!
 
