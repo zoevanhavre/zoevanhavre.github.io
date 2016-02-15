@@ -176,48 +176,44 @@ I can share my three reasons!
 
 
 
-# Urgency?
+## Urgency | Race against inexorable growth
 
-## Can we keep up?
+* The exponential growth of computing is not slowing down!
 
-The exponential growth of computing is not slowing down!
+* It is notoriously hard for our brain to really comprehend what this means. 
 
-* New types of data and new challenges require new approaches
-* This means that in 10 years, expect to see 1000-fold growth
+* If we symbolise ALL of our computational advances to date by this dot $\rightarrow \cdot$
 
-It is notoriously hard for us to understand what this means.
-
-* If we symbolise all of our computational advances by this dot $\rightarrow \cdot$
-
-    in 10 years:
+ *  In 10 years this is what we will be dealing with:
  * <img src="Images/1000-dots.png" width=900 alt="1000 dots">
 
 
-# Hope...
 
-## Hope
-- Opinions are changing fast, and everyone is coming onboard!
-- There are low hanging fruits to make better, easier tools.
-    - __the traditional way__: adapt asymptotic theory to small sample sizes.
-    - __the future__: to take advantage of Big Data (i.e. closer to truth)
-    - <div align="center">
+## Hope 
+* Opinions are changing fast, and everyone is coming onboard 
+* There are low hanging fruits to make better, easier tools.
+    * __the traditional way__: adapt asymptotic theory to small sample sizes.
+    * __the future__: to take advantage of Big Data (i.e. closer to truth)
+    * <div align="center">
     <img height="350" src="Images/Mammoth.png" frameborder="0" ></img>
     </div>
    
 
+## Excitement | Better tools make data analysis easier
 
-
-# Excitement!
-
-## Better tools make data analysis easier
-Amazing things happen when data analysis combines clear research questions,  appropriate data, and suitable, accessible tools.
-
-* Accessibility: usability, and understanding what the tool does.  
-     _Hammers and nails do not come with instruction manuals._
-* People can sometimes do more with less.
+* Amazing things happen when data analysis combines clear research questions,  appropriate data, and suitable, accessible tools.
+      * __Accessibility__: easy to use and to understand what the tool does.
+* People can often do more with less. 
 * Simple models are less likely to be wrongly used. 
 
-> It doesnt have to be just "analysis", it can be exploration, discovery, and a little bit magical. 
+
+## Excitement | Better tools make data analysis easier!
+
+ It doesnt have to be just "analysis"! It can be exploration, discovery, and more than a little exciting. 
+
+<div align="center">
+<img height="350" src="Images/good_hands.png" frameborder="0" ></img>
+</div>
 
 
 
