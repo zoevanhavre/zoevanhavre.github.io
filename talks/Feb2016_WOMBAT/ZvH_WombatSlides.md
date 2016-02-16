@@ -152,8 +152,8 @@ __Aim: identify individuals likely to be in the early stage of AD.__
 
 * Traditionally, these can be quite painful to model, but can now take more straightforward approach.
 * __Fit too many groups__, and tell model to __empty out__ those not supported by the data.
-* Bayesian method based on recent developments in Bayesian _asymptotic_ theory.
-* Model + computational tools available in R package __Zmix__ for univariate mixture models.
+* Method based on recent developments in Bayesian _asymptotic_ theory.
+* Model + computational tools available in R package __Zmix__.
 
 
 
@@ -215,43 +215,49 @@ Proc.Zmix.Y<-Process_Output_Zmix(Zmix.Y, Burn=25000)
 
 ## Overfitting the SUVR data
 
-* Keen to enforce few model assumptions (remaining parametric)
-    * Assume nothing about how AD develops, spatially or longitudinally.
-    * Consider univariate N. mixtures with unknown means and variances.
-    * Consider HC data and AD data separately.
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" style="display: block; margin: auto;" />
 
-* $\rightarrow$ many, relatively simple models, with results we can explore and potentially use for further analyses.
+<div class="notes">
+Keen to enforce few model assumptions (remaining parametric).
 
+Assume nothing about how AD develops, spatially or longitudinally.
 
+Consider univariate N. mixtures with unknown means and variances.
+
+Consider HC data and AD data separately.
+
+$\rightarrow$ many, relatively simple models, with results we can explore and potentially use for further analyses.
+</div>
 
 # Results
 
 
-## Results of Zmix
+<div class="notes">
+
 All regions were found to contain __one__ or __two__ normally distributed groups.
 
- * We chose to reduce results to the best model for each Region
-      * (model averaging is an easy alternative)
- * We named the groups by increasing mean.
- 
- 
- 
+We chose to reduce results to the best model for each Region
+
+(model averaging is an easy alternative)
+
+We named the groups by increasing mean.
+</div> 
  
 ------
 
 <slide class="segue dark background">
 <hgroup class="auto-fadein">
-<h2> What do these groups look like? </h2>
+<h2> What do the groups look like? </h2>
 </hgroup>
 <article id="sets-article-class" class="h1_class">
 </article>
 </slide>
 
 ## Mixture models: HC data 
-<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ## Mixture models: HC and AD data
-<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 -----
 <slide class="segue dark background">
@@ -265,17 +271,13 @@ All regions were found to contain __one__ or __two__ normally distributed groups
 
 ## SUVR by group: HC
 
-<img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" style="display: block; margin: auto;" />
-
-
-## SUVR by group: HC and AD
 <img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 
-
-## Weight of second cluster
-
+## SUVR by group: HC and AD
 <img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-12-1.png" title="" alt="" style="display: block; margin: auto;" />
+
+
 
 
 ------
@@ -329,19 +331,26 @@ HC: "Memory Complainers" by Group
 * Allocation to 2nd group strongly correlated across individuals,
 * comparison with other variable appears to corroborate this
 
-Overall, we found data-driven subgroups to target a group of individuals appear to be on track to AD
+Overall, we found data-driven subgroups to target a group of individuals who appear to be on-track to AD.
 
 ## Summary
 
-- Can compute measures relating to quantities of interest, by aggregating posterior probabilities across different models 
-    - i.e. to identify individuals most likely to be of interest, 
-    add the probabilities of being allocated to a the second group for each individual
+There is plenty more we could do!
+- Compute measures relating to quantities of interest, by aggregating posterior probabilities across different models 
+    - i.e. cummulative probability of being allocated to the second group for each individual
     $$ \sum P(\text{Model is true}) \times P(\text{ID is in group 2})$$
     
-- but locating second groups also allows us to proceed with more elaborate analyses
-- more importantly, it allows us to improve metrics which target the early stages of the disease 
-    - Can focus on prediction for putative __early AD__ group, etc
-    - _Easier_: use  __early AD__ instead of AD to recompute existing metrics 
+- Locating second groups allows us to proceed with more elaborate analyses.
+- Allows us to improve metrics which target the __early stages__ of the disease.
+    - _Easy_: use  "early AD" instead of AD to recompute existing metrics. 
   
+  ------------
+
+<slide class="segue dark background">
+<hgroup class="auto-fadein">
+<h2> Mountains into molehills...? </h2>
+</hgroup>
+</slide>
+
 
 # Thank you!
