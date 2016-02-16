@@ -179,7 +179,7 @@ The most common question asked since I started to pursue Statistics has been:
 **"Why...?"**
 </div>
 
-I can share my three reasons!
+I can share my top three reasons!
 
 1. A sense of urgency,
 2. tantalizing hope, and
@@ -434,7 +434,10 @@ multiplot(q1, q2, q3, q4,q5,q6, cols=3)
 
 ## SUVR by group: HC
 
-```{r, echo=FALSE, warning=FALSE, fig.width = 10 , fig.height = 5,cache=TRUE}
+```{r, echo=FALSE, warning=FALSE, fig.width = 10 , fig.height = 5}
+library(dplyr);require(ggplot2, quietly=TRUE);require(tidyr, quietly=TRUE)
+
+
 #order by mean of low group first
 Ord.k1.low<-aggregate(Estimate~Region+k_hilo, HC_SUVR_Results, mean)[1:24, 3] %>% order
 HC_SUVR_Results$Region<-factor(HC_SUVR_Results$Region, levels= levels(HC_SUVR_Results$Region)[Ord.k1.low])
@@ -445,8 +448,12 @@ ggplot(HC_SUVR_Results, aes(Region, SUVR ))+
 ```
 
 
+
 ## SUVR by group: HC and AD
-```{r, echo=FALSE, warning=FALSE, fig.width = 10 , fig.height = 5,cache=TRUE}
+```{r, echo=FALSE, warning=FALSE, fig.width = 10 , fig.height = 5}
+library(dplyr);require(ggplot2, quietly=TRUE);require(tidyr, quietly=TRUE)
+
+
 # compare to SUVR from AD's
 names(BigY_AD)[2]<-"PIB"
 BigY_AD_tall<- gather(BigY_AD, key = Region, value = SUVR,       c(4:39))
@@ -454,9 +461,15 @@ AD_SUVR_Results<-droplevels(merge(BigY_AD_tall, AD_Alz_TopModel_mu))
 ADHC<- rbind(HC_SUVR_Results, AD_SUVR_Results)
 
 # HC and AD (by HC group 1)
-ggplot(ADHC, aes(Region, SUVR ))+geom_boxplot(aes(fill=factor(k_hilo)), outlier.size = 0.1 )+ scale_fill_manual("Cluster",labels=c("HC_k_1", "HC_k_2", "AD_k_1"), values=c( "dodgerblue4", "cyan2","firebrick1"))+	theme_bw()+	theme(axis.text.x = element_text(angle = 90, hjust = 1))+  ggtitle("SUVR by Region, coloured by group (and type)")
+ggplot(ADHC, aes(Region, SUVR ))+
+  geom_boxplot(aes(fill=factor(k_hilo)), outlier.size = 0.1 )+
+  scale_fill_manual("Cluster",
+                    labels=c("HC_k_1", "HC_k_2", "AD_k_1"),
+                    values=c( "dodgerblue4", "cyan2","firebrick1"))+	
+  theme_bw()+	
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+  
+  ggtitle("SUVR by Region, coloured by group (and type)")
 ```
-
 
 
 
@@ -485,13 +498,13 @@ heatmap.3(t(ForSIMI_num),col=c( "dodgerblue4", "cyan2"), hclust=hclustfunc, dist
 </slide>
 
 
-HC: Age by Group
+Age by Group
 ------------------------------
 
 <div align="center">
 <img height="500" src="Images/AgeBox.png" frameborder="0" allowfullscreen></img>
 
-HC: "Memory Complainers" by Group
+Memory Complaints by Group
 ------------------------------
 
 ```{r, echo=FALSE,warning=FALSE, fig.height = 5, fig.width = 10, message=FALSE}
@@ -535,32 +548,37 @@ ggplot(df.new.t,aes(Region,Proportion))+geom_bar(aes(fill=Genotype),stat="identi
 
 ## Summary| What have we seen?
 
-* __one__ or __two__ Normal groups were likely to be present,
-* Distribution group 2 resembled the distribution of SUVR in AD in regions where it was found, but __shifted to a lower mean__
-* Weight of 2nd group similar in regions found to contain one, 
-* Allocation to 2nd group strongly correlated across individuals,
-* comparison with other variable appears to corroborate this
+Overall, we found __data-driven__ subgroups exist in this data, and these appear to be related to the early stages of AD. 
 
-Overall, we found data-driven subgroups to target a group of individuals who appear to be on-track to AD.
-
-## Summary
-
-There is plenty more we could do!
-- Compute measures relating to quantities of interest, by aggregating posterior probabilities across different models 
-    - i.e. cummulative probability of being allocated to the second group for each individual
-    $$ \sum P(\text{Model is true}) \times P(\text{ID is in group 2})$$
-    
-- Locating second groups allows us to proceed with more elaborate analyses.
-- Allows us to improve metrics which target the __early stages__ of the disease.
-    - _Easy_: use  "early AD" instead of AD to recompute existing metrics. 
-  
-  ------------
-
-<slide class="segue dark background">
-<hgroup class="auto-fadein">
-<h2> Mountains into molehills...? </h2>
-</hgroup>
-</slide>
+* Useful for preliminary analysis.
+* Could recompute existing risk metrics.
+* Or new measures relating to quantities of interest.
 
 
-# Thank you!
+We could have run Multivariate mixture models, or mixtures of regressions, but these come with their own assumptions (and dont all exist in Zmix yet)
+
+* _P.S. overfitted mixtures of regressions are in the works, if interested..._
+
+
+
+## So...?
+
+
+It turns out these findings mimic almost exactly our group's previous results, which were based on:
+
+> * $>$ 10 years of research,
+> * Big, sophisticated, complex models which account for all covariates
+> * Expert involvement to  choose regions and remove suspicious HC's, etc...
+
+Not bad for a bunch of simplistic models! 
+
+
+
+#Mountains into molehills...?  
+<div align="center">
+<img height="300" src="Images/deathMount.jpg" frameborder="0" allowfullscreen></img>
+</div>
+
+# Thank you!   Zoevanhavre@gmail.com
+
+P.S. I'm available from March 2016... Opportunities welcome.

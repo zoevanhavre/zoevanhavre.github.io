@@ -45,7 +45,7 @@ The most common question asked since I started to pursue Statistics has been:
 **"Why...?"**
 </div>
 
-I can share my three reasons!
+I can share my top three reasons!
 
 1. A sense of urgency,
 2. tantalizing hope, and
@@ -274,9 +274,9 @@ We named the groups by increasing mean.
 <img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 
+
 ## SUVR by group: HC and AD
 <img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-12-1.png" title="" alt="" style="display: block; margin: auto;" />
-
 
 
 
@@ -303,13 +303,13 @@ We named the groups by increasing mean.
 </slide>
 
 
-HC: Age by Group
+Age by Group
 ------------------------------
 
 <div align="center">
 <img height="500" src="Images/AgeBox.png" frameborder="0" allowfullscreen></img>
 
-HC: "Memory Complainers" by Group
+Memory Complaints by Group
 ------------------------------
 
 <img src="ZvH_WombatSlides_files/figure-html/unnamed-chunk-14-1.png" title="" alt="" style="display: block; margin: auto;" />
@@ -325,32 +325,37 @@ HC: "Memory Complainers" by Group
 
 ## Summary| What have we seen?
 
-* __one__ or __two__ Normal groups were likely to be present,
-* Distribution group 2 resembled the distribution of SUVR in AD in regions where it was found, but __shifted to a lower mean__
-* Weight of 2nd group similar in regions found to contain one, 
-* Allocation to 2nd group strongly correlated across individuals,
-* comparison with other variable appears to corroborate this
+Overall, we found __data-driven__ subgroups exist in this data, and these appear to be related to the early stages of AD. 
 
-Overall, we found data-driven subgroups to target a group of individuals who appear to be on-track to AD.
-
-## Summary
-
-There is plenty more we could do!
-- Compute measures relating to quantities of interest, by aggregating posterior probabilities across different models 
-    - i.e. cummulative probability of being allocated to the second group for each individual
-    $$ \sum P(\text{Model is true}) \times P(\text{ID is in group 2})$$
-    
-- Locating second groups allows us to proceed with more elaborate analyses.
-- Allows us to improve metrics which target the __early stages__ of the disease.
-    - _Easy_: use  "early AD" instead of AD to recompute existing metrics. 
-  
-  ------------
-
-<slide class="segue dark background">
-<hgroup class="auto-fadein">
-<h2> Mountains into molehills...? </h2>
-</hgroup>
-</slide>
+* Useful for preliminary analysis.
+* Could recompute existing risk metrics.
+* Or new measures relating to quantities of interest.
 
 
-# Thank you!
+We could have run Multivariate mixture models, or mixtures of regressions, but these come with their own assumptions (and dont all exist in Zmix yet)
+
+* _P.S. overfitted mixtures of regressions are in the works, if interested..._
+
+
+
+## So...?
+
+
+It turns out these findings mimic almost exactly our group's previous results, which were based on:
+
+> * $>$ 10 years of research,
+> * Big, sophisticated, complex models which account for all covariates
+> * Expert involvement to  choose regions and remove suspicious HC's, etc...
+
+Not bad for a bunch of simplistic models! 
+
+
+
+#Mountains into molehills...?  
+<div align="center">
+<img height="300" src="Images/deathMount.jpg" frameborder="0" allowfullscreen></img>
+</div>
+
+# Thank you!   Zoevanhavre@gmail.com
+
+P.S. I'm available from March 2016... Opportunities welcome.

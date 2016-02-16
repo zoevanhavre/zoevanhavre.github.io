@@ -1,0 +1,136 @@
+```{r, echo=FALSE, warning=FALSE, fig.width = 8 , fig.height = 5,cache=TRUE}
+require(ggplot2, quietly=TRUE)
+
+	# All Regions, HC
+ggplot(Combine_Result[Combine_Result$TopModel %in% TRUE,], 
+       aes( Region , Mu))+	
+  geom_boxplot(aes(col=factor(k)), outlier.size=0.1)+
+		  ggtitle("HC, ordered by lower group means")+
+	theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+```
+
+## Group means
+```{r, echo=FALSE, warning=FALSE, fig.width = 8 , fig.height = 5,cache=TRUE}
+require(ggplot2, quietly=TRUE)
+#### K0=2, HC only, ordered by larger mean
+newOrd<- 
+  order(
+    subset( 
+    aggregate(Mu ~ k+Region, cr.tm.K02, median), k==2)$Mu,
+    decreasing=FALSE)
+cr.tm.K02$Region<-factor(cr.tm.K02$Region,
+                         levels=levels(cr.tm.K02$Region)[newOrd])
+		
+
+ggplot(cr.tm.K02, aes( Region , Mu))+
+  geom_boxplot(aes(col=factor(k)), outlier.size=0.1)+
+		  ggtitle("HC, ordered by higher group mean")+
+		  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## SUVR by group: boxplots
+
+```{r, echo=FALSE, warning=FALSE, fig.width = 8 , fig.height = 5,cache=TRUE}
+#order by mean of low group first
+Ord.k1.low<-aggregate(Estimate~Region+k_hilo, HC_SUVR_Results, mean)[1:24, 3] %>% order
+HC_SUVR_Results$Region<-factor(HC_SUVR_Results$Region, levels= levels(HC_SUVR_Results$Region)[Ord.k1.low])
+ggplot(HC_SUVR_Results, aes(Region, SUVR ))+geom_boxplot(aes(col=factor(k_hilo)), outlier.size = 0.1 )+
+  ggtitle("SUVR by Region and Zmix Cluster: Healthy Controls")+
+		theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+
+## SUVR by group: boxplots
+
+```{r, echo=FALSE, warning=FALSE, fig.width = 8 , fig.height = 5,cache=TRUE}
+
+###
+HC_SUVR_Results_K02<- HC_SUVR_Results[ HC_SUVR_Results$Model_K0 %in% 2,]
+Ord.k2.low<-aggregate(Estimate~Region+k_hilo, HC_SUVR_Results_K02, mean)[18:34, 3] %>% order
+HC_SUVR_Results_K02$Region<-factor(HC_SUVR_Results_K02$Region, levels= levels(HC_SUVR_Results_K02$Region)[Ord.k2.low])
+ggplot(HC_SUVR_Results_K02, aes(Region, SUVR ))+geom_boxplot(aes(col=factor(k_hilo)), outlier.size = 0.1 )+
+  ggtitle("SUVR by Region and Zmix Cluster: Healthy Controls")+
+		theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+## SUVR by group: HC and AD
+```{r, echo=FALSE, warning=FALSE, fig.width = 10 , fig.height = 5,cache=TRUE}
+# compare to SUVR from AD's
+names(BigY_AD)[2]<-"PIB"
+BigY_AD_tall<- gather(BigY_AD, key = Region, value = SUVR,       c(4:39))
+AD_SUVR_Results<-droplevels(merge(BigY_AD_tall, AD_Alz_TopModel_mu))
+ADHC<- rbind(HC_SUVR_Results, AD_SUVR_Results)
+
+# HC and AD (by HC group 1)
+ggplot(ADHC, aes(Region, SUVR ))+geom_boxplot(aes(fill=factor(k_hilo)), outlier.size = 0.1 )+ scale_fill_manual("Cluster",labels=c("HC_k_1", "HC_k_2", "AD_k_1"), values=c( "dodgerblue4", "cyan2","firebrick1"))+	theme_bw()+	theme(axis.text.x = element_text(angle = 90, hjust = 1))+  ggtitle("SUVR by Region, coloured by group (and type)")
+```
+
+
+
+
+
+
+
+
+
+
+## order by ad
+
+```{r, echo=FALSE, warning=FALSE, fig.width = 8 , fig.height = 5,cache=TRUE}
+new.ord<-aggregate(Estimate~Region+k_hilo, ADHC, mean)[42:65,3]%>% order
+ADHC$Region<-factor(ADHC$Region, levels=levels(ADHC$Region)[new.ord])
+#colours  not working
+ggplot(ADHC, aes(Region, SUVR ))+geom_boxplot(aes(fill=factor(k_hilo)), outlier.size = 0.1 )+
+ scale_fill_manual("Cluster",labels=c("HC_low", "HC_high", "AD"), values=c( "dodgerblue4", "cyan2","firebrick1"))+		theme(axis.text.x = element_text(angle = 90, hjust = 1))+  ggtitle("SUVR by Region and Zmix Cluster: HCs vs ADs")
+```
+
+
+
+
+
+
+
+## SUVR by group: boxplots
+
+```{r, echo=FALSE,warning=FALSE, fig.height = 6, fig.width = 8, message=FALSE}
+require(ggplot2, quietly=TRUE)
+require(Zmix, quietly=TRUE)
+	gp.PropHigh.1<-ggplot(SUVR_ProportionHigh.1, aes(x=Region, y=PropHigh))+ geom_bar(stat="identity", fill="cyan2") + ggtitle("Weight of second cluster (with a larger mean SUVR)")+ xlab("Regions")+theme_bw()+ylab("Proportion of (HC) Patients")+theme(axis.text.x = element_text(angle = 90, hjust = 1))
+	# PLOT!!!
+	gp.PropHigh.1
+```
