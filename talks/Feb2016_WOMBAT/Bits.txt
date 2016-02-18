@@ -134,3 +134,44 @@ require(Zmix, quietly=TRUE)
 	# PLOT!!!
 	gp.PropHigh.1
 ```
+
+
+
+
+
+
+
+
+## Overfitting with Zmix | Model
+
+<div align="center">
+<img height="200" src="Images/Formula.png" frameborder="0" allowfullscreen>
+</img>
+</div>
+
+
+> - $k$: Group
+> - $r$: Region
+> - $Z$: Allocations
+> - $\pi, \mu, \sigma^2$: Mixture weights, means and variances
+
+
+
+
+
+
+
+## Overfitting with Zmix {.reveal}
+
+_Model Assumptions_:  The distribution of the data depends on an __unknown__ number of Normally distributed groups, with unknown means and variances.
+
+_Priors_
+
+  * Conditionally conjugate, and $\approx$  non-informative.
+  * __Prior weight of groups is $\approx$ zero.__
+      - _i.e._ If there is no data to support a group, it will be assigned a weight close to zero.
+
+_Computation_: 
+
+* Gibbs sampler + Prior Parallel Tempering (PPT)
+

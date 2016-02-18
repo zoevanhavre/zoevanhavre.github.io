@@ -47,9 +47,9 @@ The most common question asked since I started to pursue Statistics has been:
 
 I can share my top three reasons!
 
-1. A sense of urgency,
-2. tantalizing hope, and
-3. boundless excitement.
+> 1. A sense of urgency,
+> 2. tantalizing hope, and
+> 3. boundless excitement.
 
 
 
@@ -59,18 +59,20 @@ I can share my top three reasons!
 
 * It is notoriously hard for our brain to really comprehend what this means. 
 
-* If we symbolize ALL of our computational advances to date by this dot $\rightarrow \cdot$
+> * If we symbolize ALL of our computational advances to date by this dot $\rightarrow \cdot$
 
- *  In 10 years this is what we will be dealing with:
- * <img src="Images/1000-dots.png" width=900 alt="1000 dots">
+> *  In 10 years this is what we will be dealing with:
+>    <img src="Images/1000-dots.png" width=800 alt="1000 dots">
 
 
 
 ## Hope 
-* Opinions are changing fast, and everyone is coming on-board 
-* There are low hanging fruits to make better, easier tools.
-    * __the traditional way__: adapt asymptotic theory to small sample sizes.
-    * __the future__: to take advantage of the _features_ of Big Data (i.e. closer to the underlying truth).
+Opinions are changing fast, and everyone is coming on-board! 
+
+* There are low hanging fruits to make better, easier tools.   
+
+>    * __the traditional way__: adapt asymptotic theory to realistic sample sizes.
+>    * __the future?__: take advantage of the _features_ of Big Data (i.e. closer to the underlying truth).
 
 ## "Big" data
 <div align="center">
@@ -82,17 +84,20 @@ I can share my top three reasons!
 
 ## Excitement | Better tools make data analysis easier
 
-* Amazing things happen when data analysis combines clear research questions,  appropriate data, and suitable, accessible tools.
-      * __Accessibility__: easy to use and to understand what the tool does.
-* People can often do more with less. 
-* Simple models are less likely to be wrongly used. 
-* It doesn't have to be just "analysis"! It can be exploration, discovery, and more than a little exciting. 
+Amazing things happen when data analysis combines clear research questions,  appropriate data, and suitable, accessible tools.
+
+> * __Accessibility__: easy to use, AND understand what the tool does.
+> * Simpler models lead to fewer mistakes.  
+> * People will surprise you, if allowed.
+
+ * It doesn't have to be just "analysis"! It can be exploration, discovery, and more than a little exciting. 
 
 
 ## Excitement
-* <div align="center">
-  <img height="500" src="Images/good_hands.png" frameborder="0" ></img>
-  </div>
+<div vertical-align="center" align="center">
+<img height="550" src="Images/good_hands_png.png" frameborder="0" >
+</img>
+</div>
 
 
 
@@ -102,26 +107,26 @@ I can share my top three reasons!
 
 ## Key background
 
-* Alzheimer's Disease (AD) currently affects over 342,800 Australians, and this number is expected to rise to 900,000 by 2050.
-* Cognitive changes occur late in the disease ($\geq$ 20 years).
-* During this time, AD causes irreversible damage to the brain:
-    - accumulation of **amyloid $\beta$**,
-    - neurofibrillary tangles, 
-    - overall atrophy.
-* To better research and treat AD, we need to be able to treat it earlier.
+Alzheimer's Disease (AD) currently affects over 342,800 Australians, and this number is expected to rise to 900,000 by 2050.
 
 
-## How?
+Cognitive changes occur __very  late__ in the disease ($\geq$ 20 years).
 
-__Aim: identify individuals likely to be in the early stage of AD.__
+During this time, AD causes irreversible damage to the brain!
 
-* Best detection tool we have:  imaging of __amyloid $\beta$__  
-* Data is processed and aggregated for a set of regions (__"SUVR"__)
-  <div align="center">
-  <img height="200" src="Images/hc_brain_low.png" frameborder="0" ></img>
-  </div>
-* SUVR available for 393 individuals
-    * 290 HC, and 103 AD 
+
+> * Best detection tool we have: imaging of __amyloid $\beta$__  
+  <img width="700" src="Images/hc_brain_low.png" frameborder="0" ></img>
+
+## The data
+ 
+ SUVR available for 393 individuals: __290 HC, and 103 AD__
+  <img width="700" src="Images/hc_brain_low.png" frameborder="0" ></img>
+
+Originally, __compared AD to HC__, and so on... 
+
+_But something quite interesting is happening here._
+
     
 ## Data overview |  Histograms of Healthy Controls (HC)
 
@@ -130,60 +135,40 @@ __Aim: identify individuals likely to be in the early stage of AD.__
 
 ## "Healthy" control...? 
 
-* Traditionally, we compared AD to HC, and so on...
-* If all HC are truly healthy, that's great, but some might have the disease.
-    - they did not look normally distributed!
-* If different types of individuals are present and not modeled specifically, any conclusion drawn from comparing AD to HC may be skewed or entirely invalid. 
-  - comparisons are blurred, inference limited
-* Our main research interest is causing a problem!
+__We expect some HC's have early stage AD.__
+
+This means the HC data must contain a __mixture__ of individuals, HC and not.
+
+But if different subgroups exist, can't compare AD to HC!
+    
+    
+    
+_Undetected subgroups can cause problems..._
 
 
 
 ## Undetected subgroups can cause problems...
 <div align="center">
-<img height="500" src="Images/FarSidePenguin.png" frameborder="0" allowfullscreen></img>
+<img height="450" src="Images/FarSidePenguin.png" frameborder="0" allowfullscreen></img>
 
 
 # Overfitting with Zmix| Data-driven modelling of mixture models with an unknown number of groups. 
 
 ## Overfitting with Zmix
  
- If the distribution of SUVR in each region depends on some unknown number of groups we have a _mixture distribution with an unknown number of groups_.
+We have a _mixture distribution with an unknown number of groups_.
 
-* Traditionally, these can be quite painful to model, but can now take more straightforward approach.
-* __Fit too many groups__, and tell model to __empty out__ those not supported by the data.
-* Method based on recent developments in Bayesian _asymptotic_ theory.
-* Model + computational tools available in R package __Zmix__.
+Traditionally, these can be quite painful!
 
+> * Much easier to just __include too many groups__ in one mixture model. 
 
+> * Can use prior to tell model what to do with unnecessary groups. 
 
-## Overfitting with Zmix {.reveal}
+>    * Model + computational tools available in R package __Zmix__.
 
-_Model Assumptions_:  The distribution of the data depends on an __unknown__ number of Normally distributed groups, with unknown means and variances.
-
-_Priors_
-
-  * Conditionally conjugate, and $\approx$  non-informative.
-  * __Prior weight of groups is $\approx$ zero.__
-      - _i.e._ If there is no data to support a group, it will be assigned a weight close to zero.
-
-_Computation_: 
-
-* Gibbs sampler + Prior Parallel Tempering (PPT)
+>    * Based on recent developments in Bayesian _asymptotic_ theory.
 
 
-## Overfitting with Zmix | Model
-
-<div align="center">
-<img height="200" src="Images/Formula.png" frameborder="0" allowfullscreen>
-</img>
-</div>
-
-
-> - $k$: Group
-> - $r$: Region
-> - $Z$: Allocations
-> - $\pi, \mu, \sigma^2$: Mixture weights, means and variances
 
 ## How it's done
 
@@ -194,7 +179,7 @@ devtools::install_github('zoevanhavre/Zmix') # Thank you Hadley!
 library(Zmix)
 ```
 
-Run the model with $K=5$ groups
+Run the model (with 5 groups)
 
 
 ```r
@@ -323,32 +308,24 @@ Memory Complaints by Group
 
 # Summary of Results
 
-## Summary| What have we seen?
+## Summary
 
-Overall, we found __data-driven__ subgroups exist in this data, and these appear to be related to the early stages of AD. 
+Zmix found that __data-driven__ Normally distributed groups exist, and these are associated with features of AD. 
 
-* Useful for preliminary analysis.
-* Could recompute existing risk metrics.
-* Or new measures relating to quantities of interest.
-
-
-We could have run Multivariate mixture models, or mixtures of regressions, but these come with their own assumptions (and dont all exist in Zmix yet)
-
-* _P.S. overfitted mixtures of regressions are in the works, if interested..._
+* Useful as a preliminary analysis.
+* Can use to recompute existing metrics.
+* Or compute new measures relating to quantities of interest.
 
 
-
-## So...?
-
+## So what?
 
 It turns out these findings mimic almost exactly our group's previous results, which were based on:
 
-> * $>$ 10 years of research,
-> * Big, sophisticated, complex models which account for all covariates
-> * Expert involvement to  choose regions and remove suspicious HC's, etc...
+ * $>$ 10 years of research,
+ * Big, sophisticated models, and lots of work
+ * Lots of expert involvement.
 
-Not bad for a bunch of simplistic models! 
-
+_Not bad for a bunch of simplistic models!_
 
 
 #Mountains into molehills...?  
