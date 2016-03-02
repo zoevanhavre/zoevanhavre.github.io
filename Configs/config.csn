@@ -1,0 +1,41 @@
+"*":
+  "cmd-exec":
+    commands: [
+      {
+        target: [
+          "atom-workspace"
+        ]
+        data:
+          "Z:Blog_Rmd2md":
+            type: "spawn"
+            useJSTemplateString: true
+            path: "/usr/local/bin/Rscript /Users/zoevanhavre/Desktop/ZoeDoesDataScience/Zcommand_Rmd2md4blog.r ${path.basename(CURRENT_FILE)}"
+            console: true
+          "Z:Rmd2html":
+            type: "spawn"
+            useJSTemplateString: true
+            path: "/usr/local/bin/Rscript -e library(rmarkdown);rmarkdown::render(commandArgs(trailingOnly=TRUE)[1],'html_document') ${path.basename(CURRENT_FILE)}"
+            console: true
+          "Z:Rmd2md":
+            type: "spawn"
+            useJSTemplateString: true
+            path: "/usr/local/bin/Rscript -e library(rmarkdown);knitr::knit(commandArgs(trailingOnly=TRUE)[1]) ${path.basename(CURRENT_FILE)}"
+            console: true
+      }
+    ]
+  core:
+    disabledPackages: [
+      "language-gfm"
+    ]
+    themes: [
+      "one-dark-ui"
+      "solarized-dark-syntax"
+    ]
+  editor:
+    fontSize: 15
+    invisibles: {}
+  "exception-reporting":
+    userId: "1939ad93-ce1a-daec-d21b-e5d4f2e53ba0"
+  "markdown-writer": {}
+  welcome:
+    showOnStartup: false
