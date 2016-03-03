@@ -11,10 +11,10 @@
             useJSTemplateString: true
             path: "/usr/local/bin/Rscript Zcommand_Rmd2md_forBlogging.r ${path.basename(CURRENT_FILE)}"
             console: true
-          "Ztest:RunServer":
+          "Z:Serve_Jekyll_knitr":
             type: "spawn"
             useJSTemplateString: true
-            path: "/usr/local/bin/Rscript /Users/zoevanhavre/Documents/knitr-jekyll-gh-pages/RunServer.r "
+            path: "/usr/local/bin/Rscript -e setwd('..');servr::jekyll() "
             console: true
           "Z:Rmd2html":
             type: "spawn"
