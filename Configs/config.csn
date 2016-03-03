@@ -9,7 +9,12 @@
           "Z:Blog_Rmd2md":
             type: "spawn"
             useJSTemplateString: true
-            path: "/usr/local/bin/Rscript /Users/zoevanhavre/Desktop/ZoeDoesDataScience/Zcommand_Rmd2md4blog.r ${path.basename(CURRENT_FILE)}"
+            path: "/usr/local/bin/Rscript Zcommand_Rmd2md_forBlogging.r ${path.basename(CURRENT_FILE)}"
+            console: true
+          "Ztest:RunServer":
+            type: "spawn"
+            useJSTemplateString: true
+            path: "/usr/local/bin/Rscript /Users/zoevanhavre/Documents/knitr-jekyll-gh-pages/RunServer.r "
             console: true
           "Z:Rmd2html":
             type: "spawn"
@@ -27,6 +32,9 @@
     disabledPackages: [
       "language-gfm"
     ]
+    packagesWithKeymapsDisabled: [
+      "markdown-writer"
+    ]
     themes: [
       "one-dark-ui"
       "solarized-dark-syntax"
@@ -36,6 +44,16 @@
     invisibles: {}
   "exception-reporting":
     userId: "1939ad93-ce1a-daec-d21b-e5d4f2e53ba0"
-  "markdown-writer": {}
+  jekyll:
+    buildCommand: [
+      "/usr/local/bin/jekyll"
+      "build"
+    ]
+  "markdown-writer":
+    relativeImagePath: true
+    siteEngine: "jekyll"
   welcome:
     showOnStartup: false
+".html.jekyll.text":
+  editor:
+    tabLength: 4
